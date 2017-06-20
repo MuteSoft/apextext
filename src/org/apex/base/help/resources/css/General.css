@@ -1,0 +1,19 @@
+/* 
+    Document   : General
+    Created on : Jan 24, 2008, 2:49:10 PM
+    Author     : Mrityunjoy_Saha
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.titleText{
+    
+    font-size: 24px;
+    margin-left: 4px;
+}
+

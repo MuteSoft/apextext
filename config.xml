@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Application Configuration</comment>
+  <entry key="apex.lang">english</entry>
+  <entry key="apex.debug">false</entry>  
+  <entry key="apex.info">false</entry>  
+  <entry key="apex.warning">false</entry>  
+  <entry key="apex.error">false</entry>  
+  <entry key="apex.log.dir">D:/log</entry>  
+</properties>

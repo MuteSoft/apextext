@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+SplashScreen-Image: org/apex/text/core/resources/apextext_splash.png
+X-COMMENT: Main-Class will be added automatically by build
