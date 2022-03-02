@@ -29,7 +29,7 @@ import org.apex.base.constant.FontConstants;
 /**
  * The splash screen which is displayed while editor loads required components
  * and realizes to screen.
- * @author Mrityunjoy Saha
+ * @author MuteSoft
  * @version 1.0
  * @since Apex 1.0
  */
