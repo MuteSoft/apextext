@@ -61,7 +61,7 @@ public class ApexMenuItem extends JMenuItem {
      * @param parent The {@code Menu} where to add the menu item.
      */
     public ApexMenuItem(Action action, ApexMenuItem parent) {
-        this("", ' ', parent);
+        //this("", ' ', parent);
         this.setAction(action);
     }
 

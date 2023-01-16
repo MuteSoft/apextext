@@ -33,6 +33,7 @@ import org.apex.base.component.ApexSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -144,7 +145,7 @@ public class OutputWindow extends ApexPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
+                if (e.getClickCount() == 1) {
                     if (getParent() instanceof ApexSplitPane) {
                         ApexSplitPane splitPane = (ApexSplitPane) getParent();
                         if (splitPane.getDividerLocation() <= 100) {
@@ -160,6 +161,7 @@ public class OutputWindow extends ApexPanel {
                 }
             }
         });
+        titleBar.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
         this.consoleOptions = new ConsoleOptions();
         this.add(consoleOptions, BorderLayout.WEST);
         this.add(titleBar, BorderLayout.NORTH);

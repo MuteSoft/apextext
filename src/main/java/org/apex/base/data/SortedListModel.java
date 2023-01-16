@@ -104,7 +104,7 @@ public class SortedListModel extends AbstractListModel {
         if (comp != null) {
             comparator = comp;
         } else {
-            comparator = Collator.getInstance();
+            comparator = new MultilingualComparator();
         }
 
         // get base model info
@@ -232,14 +232,14 @@ public class SortedListModel extends AbstractListModel {
     public void setComparator(Comparator comp) {
         if (comp == null) {
             sortOrder = SortOrder.UNORDERED;
-            comparator = Collator.getInstance();
+            comparator = new MultilingualComparator();
             resetModelData();
         } else {
             comparator = comp;
             Collections.sort(sortedModel);
         }
-        fireContentsChanged(ListDataEvent.CONTENTS_CHANGED, 0, sortedModel.size() -
-                1);
+        fireContentsChanged(ListDataEvent.CONTENTS_CHANGED, 0, sortedModel.size()
+                - 1);
     }
 
     /**
@@ -255,8 +255,9 @@ public class SortedListModel extends AbstractListModel {
             } else {
                 Collections.sort(sortedModel);
             }
-            fireContentsChanged(ListDataEvent.CONTENTS_CHANGED, 0, sortedModel.size() -
-                    1);
+            fireContentsChanged(ListDataEvent.CONTENTS_CHANGED, 0, sortedModel.
+                    size()
+                    - 1);
         }
     }
 
@@ -342,8 +343,8 @@ public class SortedListModel extends AbstractListModel {
     @SuppressWarnings("unchecked")
     private void unsortedContentsChanged(ListDataEvent e) {
         Collections.sort(sortedModel);
-        fireContentsChanged(ListDataEvent.CONTENTS_CHANGED, 0, sortedModel.size() -
-                1);
+        fireContentsChanged(ListDataEvent.CONTENTS_CHANGED, 0, sortedModel.size()
+                - 1);
     }
 
     /**
@@ -400,6 +401,22 @@ public class SortedListModel extends AbstractListModel {
     }
 
     /**
+     * A class to compare multilingual strings. In release 1.3, it works well
+     * only for english strings. And can be enhanced later to work with
+     * all UTF-8 based strings.
+     */
+    class MultilingualComparator implements Comparator<String> {
+        /**
+         * Use the collator in future releases.
+         */
+        private Collator collator = null;
+
+        public int compare(String o1, String o2) {
+            return o1.compareTo(o2);
+        }
+    }
+
+    /**
      * A sorted list entry.
      */
     class SortedListEntry implements Comparable {
@@ -451,7 +468,7 @@ public class SortedListModel extends AbstractListModel {
             // model
             Object thatElement =
                     unsortedModel.getElementAt(thatEntry.getIndex());
-            if (comparator instanceof Collator) {
+            if (!(o instanceof String)) {
                 thisElement = thisElement.toString();
                 thatElement = thatElement.toString();
             }

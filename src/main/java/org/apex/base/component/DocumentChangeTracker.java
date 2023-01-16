@@ -81,8 +81,13 @@ public class DocumentChangeTracker implements ActionListener {
      * @return {@code true} if the document is changed; otherwise returns {@code false}.
      */
     public boolean isDocumentChanged(AbstractDocument document) {
-        return Math.abs(document.lastModified() - document.getLastSaved())
-                > EditorKeyConstants.DOCUMENT_CHANGE_TRACKING_TOLERANCE;
+        System.out.println("Printing: document.lastModified(): "+document.lastModified());
+        System.out.println("Printing: document.getLastSaved(): "+document.getLastSaved());
+        System.out.println("Printing: document.isReadWriteInProgress(): "+document.isReadWriteInProgress());
+        boolean b= (Math.abs(document.lastModified() - document.getLastSaved())
+                > EditorKeyConstants.DOCUMENT_CHANGE_TRACKING_TOLERANCE) && !document.
+                isReadWriteInProgress();
+        return b;
     }
 
     /**
@@ -102,9 +107,11 @@ public class DocumentChangeTracker implements ActionListener {
                         getAbsolutePath());
                 DocumentWrapper docWrapper = getContext().getEditorProperties().
                         getOpenDocumentWrapper(document.getAbsolutePath());
-                getContext().getEditorProperties().removeOpenDocument(document.getAbsolutePath());
+                getContext().getEditorProperties().removeOpenDocument(document.
+                        getAbsolutePath());
                 document.setTemporary(true);
-                getContext().getEditorProperties().addOpenDocument(document.getAbsolutePath(),
+                getContext().getEditorProperties().addOpenDocument(document.
+                        getAbsolutePath(),
                         docWrapper);
                 FileUtil.markAsUnsaved(getContext(), document);
                 MenuUtil.updateMenuStatus(getContext(), document);

@@ -20,6 +20,8 @@
  */
 package org.apex.base.component;
 
+import javax.swing.Action;
+import javax.swing.KeyStroke;
 import org.apex.base.data.TypingMode;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -69,6 +71,18 @@ public class ApexTextPane extends JTextPane {
      */
     public ApexTextPane(StyledDocument doc) {
         super(doc);        
+    }
+
+    /**
+     * Binds a key board action.
+     * @param name The name of action.
+     * @param keyStroke The accelerator.
+     * @param action The action.
+     */
+    public void addKeyBoardAction(String name, KeyStroke keyStroke,
+        Action action) {
+        this.getInputMap(WHEN_FOCUSED).put(keyStroke, name);
+        this.getActionMap().put(name, action);
     }
 
     /**
@@ -193,6 +207,8 @@ public class ApexTextPane extends JTextPane {
         TabSet tabSet = new TabSet(tabs);
         SimpleAttributeSet attributes = new SimpleAttributeSet();
         StyleConstants.setTabSet(attributes, tabSet);
+        // TODO Fix the caret height https://github.com/MuteSoft/apextext/issues/5
+        //StyleConstants.setLineSpacing(attributes, 1.0f);
         int length = this.getDocument().getLength();
 
         try {

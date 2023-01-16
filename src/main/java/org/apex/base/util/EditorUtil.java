@@ -54,8 +54,7 @@ public class EditorUtil {
         if (language.equalsIgnoreCase("hi")
                 || language.equalsIgnoreCase("hindi")) {
             locale = new Locale("hi", "IN");
-        } else if (language.equalsIgnoreCase("ja") || language.
-                equalsIgnoreCase(
+        } else if (language.equalsIgnoreCase("ja") || language.equalsIgnoreCase(
                 "japanese")) {
             locale = new Locale("ja", "JP");
         }
@@ -88,6 +87,9 @@ public class EditorUtil {
                     getEditorTitle()
                     + " " + context.getEditorProperties().getEditorVersion();
         }
+//        if (document != context.getEditorProperties().getCurrentDocument()) {
+//            return context.getEditorComponents().getFrame().getTitle();
+//        }
         return document.getDisplayAbsolutePath() + " - " + context.
                 getEditorProperties().
                 getEditorTitle()
@@ -195,6 +197,29 @@ public class EditorUtil {
     public static String getMultipleOptionsNote() {
         return "Note: separate multiple inputs by '"
                 + CommonConstants.OPTIONS_SEPARATOR + "'";
+    }
+
+    /**
+     * 
+     * @param total
+     * @param remaining
+     * @return 
+     */
+    public static int calculateProgressPercentage(int total, int remaining,
+            int scale) {
+        return ((total - remaining) * scale) / total;
+    }
+
+    /**
+     * 
+     * @param total
+     * @param remaining
+     * @param scale
+     * @return 
+     */
+    public static int calculateProgressPercentage(long total, long remaining,
+            int scale) {
+        return (int) (((total - remaining) * scale) / total);
     }
 
     /**

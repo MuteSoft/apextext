@@ -131,6 +131,9 @@ public class EditorComponents {
      */
     public synchronized void setStatusBar(StatusBar statusBar) {
         this.statusBar = statusBar;
+        if (statusBar != null && this.progressPanel == null) {
+            this.progressPanel = TaskProgressIndicator.getSharedInstance();
+        }        
     }
 
     /**

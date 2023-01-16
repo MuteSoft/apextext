@@ -41,12 +41,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Vector;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 import org.apex.base.constant.EditorKeyConstants;
 import org.apex.base.constant.MenuConstants;
+import org.apex.base.function.AdvancedReadFile;
 import org.apex.base.logging.Logger;
 import org.apex.base.util.FileUtil;
 import org.apex.base.util.StringUtil;
@@ -323,7 +323,8 @@ public class OpenFileMenu extends BasicUIMenu {
         InputParams input = new InputParams();
         input.put("OPENING_FILE",
                 file);
-        Function read = new ReadFile();
+        //Function read = new ReadFile();
+        Function read = new AdvancedReadFile();
         read.process(input, null);
         /* Open file from disk -End */
     }

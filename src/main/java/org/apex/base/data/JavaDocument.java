@@ -19,6 +19,7 @@
  */
 package org.apex.base.data;
 
+import java.io.File;
 import org.apex.base.highlighter.lexer.JavaLexer;
 import org.apex.base.highlighter.lexer.JavaToken;
 import org.apex.base.highlighter.style.DocumentStyle;
@@ -123,7 +124,7 @@ public class JavaDocument extends AbstractDocument {
     public String getJavaDirectory(String packageName) {
         String directory = getDirectory();
         if (packageName != null && !packageName.equals("")) {
-            packageName = packageName.replace('.', '\\');
+            packageName = packageName.replace('.', File.separatorChar);
             if (directory.indexOf(packageName) != -1) {
                 // Fix for bug id 2071970 (sourceforge.net)
                 return directory.substring(0, directory.lastIndexOf(packageName));

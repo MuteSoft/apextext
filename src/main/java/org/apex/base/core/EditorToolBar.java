@@ -21,6 +21,7 @@
 package org.apex.base.core;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Insets;
 import javax.swing.border.Border;
@@ -58,7 +59,7 @@ public class EditorToolBar extends JToolBar {
     public EditorToolBar() {
         loadToolBar(EditorBase.getContext());
         this.setBorder(BorderFactory.createMatteBorder(0, 0,
-                1, 0, Color.GRAY));
+                1, 0, Color.GRAY));        
     }
 
     /**

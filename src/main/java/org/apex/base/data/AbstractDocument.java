@@ -31,6 +31,7 @@ import java.awt.Component;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.text.DefaultStyledDocument;
 import javax.swing.undo.UndoManager;
 import org.apex.base.codecompletion.CodeCompletionPopup;
 import org.apex.base.constant.EditorKeyConstants;
@@ -92,6 +93,10 @@ public abstract class AbstractDocument extends File implements DocumentClass, Cl
      */
     private static ImageIcon DOCUMENT_ICON = ImageCreator.createImageIcon(
             EditorBase.class, EditorKeyConstants.DEFAULT_FILE_ICON);
+    /**
+     * A flag to identify whether document read or write operation is in progress.
+     */
+    private boolean readWriteInProgress;
 
     /**
      * Constructs a document with given name.
@@ -156,8 +161,8 @@ public abstract class AbstractDocument extends File implements DocumentClass, Cl
      * Returns the underlying data model.
      * @return The underlying data model.
      */
-    public synchronized HighlightedDocument getDocument() {
-        return (HighlightedDocument) this.editor.getDocument();
+    public synchronized DefaultStyledDocument getDocument() {
+        return (DefaultStyledDocument) this.editor.getDocument();
     }
 
     /**
@@ -555,5 +560,21 @@ public abstract class AbstractDocument extends File implements DocumentClass, Cl
      */
     public CodeCompletionPopup getCodeCompletionPopup() {
         return null;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public boolean isReadWriteInProgress() {
+        return readWriteInProgress;
+    }
+
+    /**
+     * 
+     * @param readWriteInProgress 
+     */
+    public void setReadWriteInProgress(boolean readWriteInProgress) {
+        this.readWriteInProgress = readWriteInProgress;
     }
 }

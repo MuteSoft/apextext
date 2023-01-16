@@ -47,6 +47,7 @@ import java.util.Properties;
 import javax.swing.JFileChooser;
 import javax.swing.RepaintManager;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -112,8 +113,14 @@ public abstract class EditorBase {
      */
     public void createBase(String[] args) {
         setEditorGlobalData();
-
         ActionManager.createActions();
+        new SwingWorker() {
+
+            @Override
+            protected Object doInBackground() throws Exception {
+                return null;
+            }
+        }.execute();
         createUI();
         Logger.logInfo("Default actions and UI created.");
         /*
@@ -134,11 +141,11 @@ public abstract class EditorBase {
         // This is to reduce performance bottleneck when first time file chooser dialog is opened.
         // Remove this code when JFileChooser startup becomes fast enough in swing.
         // @TODO Decide after profiling whether to do this or not
-        final Timer backgroundTimer = new Timer(10000, new ActionListener() {
+        final Timer backgroundTimer = new Timer(60000, new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 if (defaultFileChooser == null) {
-                    defaultFileChooser = new JFileChooser();
+                    //defaultFileChooser = new JFileChooser();
                 }
             }
         });
@@ -160,7 +167,7 @@ public abstract class EditorBase {
         context.getEditorComponents().setMenuBar(menuBar);
         context.getEditorComponents().setToolBar(toolBar);
         this.mainFrame.setJMenuBar(menuBar);
-        ApexPanel editPanel = new EditorBody();
+        ApexPanel editPanel = new EditorBody();        
         this.mainFrame.setLayout(new BorderLayout());
         this.mainFrame.getContentPane().add(toolBar, BorderLayout.PAGE_START);
         this.mainFrame.getContentPane().add(editPanel, BorderLayout.CENTER);
@@ -192,7 +199,7 @@ public abstract class EditorBase {
      */
     protected void setEditorGlobalData() {
         EditorProperties prop = getEditorProperties();
-        EditorComponents comp = getEditorComponents();
+        EditorComponents comp = getEditorComponents();        
         comp.setFrame(this.mainFrame);
         context.setEditorProperties(prop);
         context.setEditorComponents(comp);
@@ -263,8 +270,8 @@ public abstract class EditorBase {
             public void run() {
                 try {
                     // @TODO RepaintManager is used for debug purpose. After development remove this.
-//                    RepaintManager.setCurrentManager(
-//                            new EDTThreadCheckingRepaintManager());
+                    RepaintManager.setCurrentManager(
+                            new EDTThreadCheckingRepaintManager());
                     UIManager.setLookAndFeel(UIManager.
                             getSystemLookAndFeelClassName());
                     setUIDefaults();
@@ -317,12 +324,13 @@ public abstract class EditorBase {
             }
             Properties p = new Properties();
             configInputStream = new FileInputStream(file);
-            p.loadFromXML(configInputStream);
+            p.load(configInputStream);
             String[] propertyKeys = new String[]{
                 EditorKeyConstants.DEBUG_LOG_JVM_PARAM,
                 EditorKeyConstants.INFO_LOG_JVM_PARAM,
                 EditorKeyConstants.ERROR_LOG_JVM_PARAM,
                 EditorKeyConstants.WARNING_LOG_JVM_PARAM,
+                EditorKeyConstants.CONSOLE_LOG_JVM_PARAM,
                 EditorKeyConstants.LANGUAGE_JVM_PARAM,
                 EditorKeyConstants.LOG_DIRECTORY_JVM_PARAM
             };

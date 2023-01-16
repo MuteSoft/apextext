@@ -28,7 +28,6 @@ import org.apex.base.core.EditorBase;
 import org.apex.base.core.PopupMenuManager;
 import org.apex.base.data.TypingMode;
 import org.apex.base.dnd.FileAndTextTransferHandler;
-import org.apex.base.event.CaretListenerImpl;
 import org.apex.base.event.EditorPopupFocusListener;
 import org.apex.base.event.CodeCompletionKeyListener;
 import org.apex.base.event.DocumentQueueKeyListener;
@@ -82,6 +81,10 @@ public class TextEditor extends ApexTextPane {
      * The right margin color.
      */
     private Color rightMarginColor;
+    /**
+     * Line background painter;
+     */
+    private LineBackgroundPainter lineBgPainter;
 
     /**
      * Creates a new instance of {@code TextEditor}.
@@ -156,7 +159,7 @@ public class TextEditor extends ApexTextPane {
      */
     public void addListeners() {
         // Create the line background painter
-        new LineBackgroundPainter(
+        this.lineBgPainter = new LineBackgroundPainter(
                 this,
                 EditorKeyConstants.EDIT_AREA_LINE_BACKGROUND_COLOR);
         this.setOpaque(true);
@@ -167,7 +170,7 @@ public class TextEditor extends ApexTextPane {
         this.setTransferHandler(new FileAndTextTransferHandler());
 
         // Add Caret Listener to the text pane.
-        this.addCaretListener(new CaretListenerImpl());
+        //this.addCaretListener(new CaretListenerImpl());
 
         // Add the MouseListener to the text pane for popup menu.
         this.addMouseListener(new PopupMenuBarListener(
@@ -259,7 +262,7 @@ public class TextEditor extends ApexTextPane {
      * @return An action.
      */
     public Action getDefaultAction(String name) {
-        return this.getActionMap().get(name); 
+        return this.getActionMap().get(name);
     }
 
     /**
@@ -363,4 +366,11 @@ public class TextEditor extends ApexTextPane {
         }
     }
 
+    /**
+     * Returns the associated line background painter.
+     * @return The background painter.
+     */
+    public LineBackgroundPainter getLineBgPainter() {
+        return lineBgPainter;
+    }
 }

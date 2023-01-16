@@ -234,5 +234,6 @@ public class CloseFileMenu extends UILessMenu {
         file.setEditor(null);
         file.setComponent(null);
         file.setLineNumberArea(null);
+        file=null;
     }
 }

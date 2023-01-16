@@ -57,6 +57,10 @@ public class LineBackgroundPainter extends DefaultHighlighter.DefaultHighlightPa
      * The last highlight.
      */
     private Object lastHighlight;
+    /**
+     * Whether background painter pause for sometime.
+     */
+    private boolean pause;
 
     /**
      * Constructs a new instance of {@code LineBackgroundPainter} using specified text
@@ -76,6 +80,21 @@ public class LineBackgroundPainter extends DefaultHighlighter.DefaultHighlightPa
 
         // At the begining highlight the first line.
         addHighlight(0);
+        this.pause=true;
+    }
+
+    /**
+     * Pauses painting.
+     */
+    public void pause() {
+        this.pause = true;
+    }
+
+    /**
+     * Resumes painting.
+     */
+    public void resume() {
+        this.pause = false;
     }
 
     /**
@@ -83,7 +102,9 @@ public class LineBackgroundPainter extends DefaultHighlighter.DefaultHighlightPa
      * @param e The caret event.
      */
     public void caretUpdate(CaretEvent e) {
-        resetHighlight();
+        if (!pause) {
+            resetHighlight();
+        }
     }
 
     /**
@@ -98,7 +119,7 @@ public class LineBackgroundPainter extends DefaultHighlighter.DefaultHighlightPa
      * Invoked when a mouse button has been pressed on a component.
      * @param e The mouse event.
      */
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {        
         resetHighlight();
     }
 
@@ -148,7 +169,8 @@ public class LineBackgroundPainter extends DefaultHighlighter.DefaultHighlightPa
         try {
             lastHighlight = highlighter.addHighlight(offset, offset + 1, this);
         } catch (BadLocationException ex) {
-            Logger.logWarning("Could not add line background highlight at offset: " + offset,
+            Logger.logWarning(
+                    "Could not add line background highlight at offset: " + offset,
                     ex);
         }
 
@@ -190,6 +212,9 @@ public class LineBackgroundPainter extends DefaultHighlighter.DefaultHighlightPa
     public Shape paintLayer(Graphics g, int offs0, int offs1,
             Shape bounds,
             JTextComponent c, View view) {
+        if(pause){
+            return null;
+        }
         try {
             // Use the first offset to get the line to highlight
             Rectangle lineArea = c.modelToView(offs0);
@@ -200,7 +225,8 @@ public class LineBackgroundPainter extends DefaultHighlighter.DefaultHighlightPa
             g.fillRect(lineArea.x, lineArea.y, lineArea.width, lineArea.height);
             return lineArea;
         } catch (BadLocationException ex) {
-            Logger.logWarning("Could not paint line background at offset: " + offs0, ex);
+            Logger.logWarning(
+                    "Could not paint line background at offset: " + offs0, ex);
             return null;
         }
     }

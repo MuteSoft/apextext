@@ -22,6 +22,7 @@ package org.apex.base.event;
 import org.apex.base.core.EditorBase;
 import org.apex.base.data.AbstractDocument;
 import org.apex.base.data.DocumentWrapper;
+import org.apex.base.data.HighlightedDocument;
 import org.apex.base.data.IDocumentType;
 import org.apex.base.settings.SyntaxStyleConfiguration;
 import org.apex.base.settings.event.SyntaxStyleConfigChangeEvent;
@@ -74,9 +75,13 @@ public class DocumentSyntaxStyleChangeListener implements SyntaxStyleConfigChang
             return;
         }
         // Update Styles
-        file.getDocument().getSyntaxStyle().addStyles();
-        // Apply Style
-        file.getDocument().setHighlightStyle(file.getLexer(),
-                file.getDocumentStyle());
+        if (file.getDocument() instanceof HighlightedDocument) {
+            HighlightedDocument document = (HighlightedDocument) file.
+                    getDocument();
+            document.getSyntaxStyle().addStyles();
+            // Apply Style
+            document.setHighlightStyle(file.getLexer(),
+                    file.getDocumentStyle());
+        }
     }
 }

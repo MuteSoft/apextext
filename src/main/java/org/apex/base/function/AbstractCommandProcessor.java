@@ -20,7 +20,11 @@
  */
 package org.apex.base.function;
 
+import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
+import javax.swing.KeyStroke;
+import org.apex.base.action.AutoIndentationAction;
+import org.apex.base.action.ReadConsoleAction;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.constant.EditorKeyConstants;
@@ -205,13 +209,13 @@ public abstract class AbstractCommandProcessor extends Function {
 
             @Override
             public void run() {
-                BufferedReader outStream = null;
+                BufferedReader inStream = null;
                 try {
                     String readData = "";
-                    outStream =
+                    inStream =
                             new BufferedReader(new InputStreamReader(p.
                             getInputStream()));
-                    while ((readData = outStream.readLine()) != null) {
+                    while ((readData = inStream.readLine()) != null) {
                         appendOutput(readData);
                         sleep(EditorKeyConstants.RESULT_AREA_MESSAGE_PULL_DELAY);
                     }
@@ -224,12 +228,16 @@ public abstract class AbstractCommandProcessor extends Function {
                             "Error while reading output stream of process: " + p,
                             ex);
                 } finally {
-                    FileUtil.closeIOStream(outStream);
+                    FileUtil.closeIOStream(inStream);
                 }
             }
         };
         output.start();
-
+        // Register user input listeners Issue#3
+        this.console.getResultArea().addKeyBoardAction("ReadConsoleLine", KeyStroke.getKeyStroke(
+                KeyEvent.VK_ENTER,
+                0),
+            new ReadConsoleAction(p.getOutputStream()));
         // Ensure that output and error threads finished their execution.
         try {
             error.join();

@@ -109,11 +109,10 @@ public class Logger {
                     trim().equalsIgnoreCase("true");
         }
         isConsoleLoggingRequired = System.getProperty(
-                EditorKeyConstants.CONSOLE_LOGGING_JVM_PARAM) != null && System.
+                EditorKeyConstants.CONSOLE_LOG_JVM_PARAM) != null && System.
                 getProperty(
-                EditorKeyConstants.CONSOLE_LOGGING_JVM_PARAM).
-                trim().equalsIgnoreCase("true");
-        isConsoleLoggingRequired = true;
+                EditorKeyConstants.CONSOLE_LOG_JVM_PARAM).
+                trim().equalsIgnoreCase("true");        
         logDir = System.getProperty(EditorKeyConstants.LOG_DIRECTORY_JVM_PARAM) == null
                 ? System.getProperty("user.dir")
                 : System.getProperty(EditorKeyConstants.LOG_DIRECTORY_JVM_PARAM);

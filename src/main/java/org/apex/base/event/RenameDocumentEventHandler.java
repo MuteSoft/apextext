@@ -64,6 +64,8 @@ public class RenameDocumentEventHandler extends UIEventHandler {
         SaveAsFileMenu saveAsMenu =
                 (SaveAsFileMenu) MenuManager.getMenuById(
                 MenuConstants.SAVE_FILE_AS);
+        // @TODO Instead of assuming file paths case insensitive use operating system abstraction
+        // to determine it.
         if (saveAsMenu.doSaveAs(targetDocument, input, output) && !document.
                 getAbsolutePath().
                 equalsIgnoreCase(targetDocument.getAbsolutePath())) {

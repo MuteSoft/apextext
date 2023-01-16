@@ -108,7 +108,7 @@ public class EditorKeyConstants {
     /**
      * The property name to enable console log.
      */
-    public static final String CONSOLE_LOGGING_JVM_PARAM = "apex.console";
+    public static final String CONSOLE_LOG_JVM_PARAM = "apex.console";
     /**
      * The property name to specify log directory.
      */
@@ -133,7 +133,7 @@ public class EditorKeyConstants {
      * Application configuration properties file.
      */
     public static final String APPLICATION_CONFIGURATION_FILE =
-            "config.xml";
+            "config.cfg";
     /**
      *  Application configuration properties file maximum allowed size in bytes.
      */
