@@ -6,7 +6,7 @@
     <groupId>org.openapex.apextext</groupId>
     <artifactId>core</artifactId>
     <version>2.0</version>
-    <packaging>pom</packaging>
+  <packaging>pom</packaging>
     <properties>
         <jdk.version>1.8</jdk.version>
     </properties>
