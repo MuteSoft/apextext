@@ -185,7 +185,7 @@ public class EditorUtil {
      */
     public static String getApexSettingsHomeDir() {
         return FileUtil.getUserHomeDir() + File.separator + ".apextext"
-                + File.separator + "resources";
+                + File.separator + "help";
     }
 
     /**
