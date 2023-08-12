@@ -20,6 +20,9 @@
  */
 package org.apex.base.component;
 
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 import org.apex.base.core.EditorBase;
 import org.apex.base.data.EditorContext;
 import org.apex.base.settings.FontStyleConfiguration;
@@ -98,6 +101,8 @@ public class LineNumberedTextEditor extends ApexPanel {
                 editArea.setTabSize(genSecConfig.getTabSize());
             }
         });
+        // TODO Support dark theme
+        // editArea.setBackground(Color.BLACK);
         editArea.setFont(getContext().getConfiguration().getStyleConfig().
                 getFontStyle().getFont());
         editArea.setTabSize(generalSection.getTabSize());

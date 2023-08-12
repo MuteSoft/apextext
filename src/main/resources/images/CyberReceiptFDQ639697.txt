@@ -1,0 +1,33 @@
+
+
+		Cyber Receipt
+___________________________________________________________________________
+
+
+Reference id		: FDQ639697
+TimeStamp			: 2010-10-02 12:35:57.527000000
+
+
+
+		FIXED DEPOSIT REQUEST    
+	--------------------------------------------
+
+	City			: KOLKATA	
+
+	Branch			: Amtala~00440
+
+	Debit Account		: 440010100123464  
+
+	Deposit Amount		: 49990 INR 
+
+	Nature of Deposit		: Monthly
+
+	Deposit Period (Years)	: 02 		
+
+	Deposit Period (Months)	: 01 		
+	
+	Deposit Period (Days)	:  		
+
+	Maturity Instruction	: DirectCredit
+
+ __________________________________________________________________________

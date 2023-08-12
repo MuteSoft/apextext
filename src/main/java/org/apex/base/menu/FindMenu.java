@@ -40,7 +40,7 @@ public class FindMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(420, 155);
+    private static final Point WINDOW_SIZE = new Point(450, 180);
 
     /**
      * Creates a new instance of {@code FindMenu}.

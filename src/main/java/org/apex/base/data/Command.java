@@ -234,6 +234,6 @@ public class Command {
      * @return The display string of this command.
      */
     public String toDisplayString() {
-        return this.toolName + " - " + this.command;
+        return this.toolName;
     }
 }

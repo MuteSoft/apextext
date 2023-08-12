@@ -30,7 +30,7 @@ import org.apex.base.settings.event.HighlightStyleConfigChangeListener;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Vector;
+import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Highlighter.Highlight;
@@ -230,7 +230,7 @@ public class SearchTextUtility {
      * @param existingKeys A lsit of keys.
      * @param newItem A new item.
      */
-    public static void checkAndAddItemToList(Vector<String> existingKeys,
+    public static void checkAndAddItemToList(List<String> existingKeys,
             String newItem) {
         //String newItem = model.getSearchKey();
         //Vector<String> findKeys = model.getSearchKeys();
@@ -239,7 +239,7 @@ public class SearchTextUtility {
             existingKeys.remove(newItem);
         }
         // In any case set this text as first element.
-        existingKeys.insertElementAt(newItem, 0);
+        existingKeys.add(0, newItem);
     }
 
     /**

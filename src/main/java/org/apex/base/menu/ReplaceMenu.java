@@ -37,7 +37,7 @@ public class ReplaceMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(450, 185);
+    private static final Point WINDOW_SIZE = new Point(540, 220);
 
     /**
      * Creates a new instance of {@code ReplaceMenu}. Creates the user interface

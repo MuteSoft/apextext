@@ -43,6 +43,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 import org.apex.base.data.DocumentNameExtensionFilter;
 import org.apex.base.data.DocumentType;
+import org.apex.base.data.HighlightedDocument;
 import org.apex.base.data.IDocumentType;
 import org.apex.base.util.StringUtil;
 
@@ -224,9 +225,11 @@ public class SaveAsFileMenu extends BasicUIMenu {
         if (!oldDocument.getDocumentType().equals(selectedFile.getDocumentType())) {
             // Update document tab icon as well
             EditorUtil.updateDocumentIcon(getContext(), selectedFile);
-            selectedFile.getDocument().
-                    setHighlightStyle(selectedFile.getLexer(),
-                    selectedFile.getDocumentStyle());
+            if (selectedFile.getDocument() instanceof HighlightedDocument) {
+                ((HighlightedDocument) selectedFile.getDocument()).
+                        setHighlightStyle(selectedFile.getLexer(),
+                        selectedFile.getDocumentStyle());
+            }
         }
 
         // Update Tab.

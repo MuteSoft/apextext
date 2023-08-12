@@ -79,7 +79,7 @@ public class AddDocumentType extends DocumentTypeChangeSupport {
         defaultExtension = new javax.swing.JTextField();
         ((AbstractDocument)this.defaultExtension.getDocument()).setDocumentFilter(new AlphaNumericFilter(15));
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/apex/base/settings/ui/Bundle"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("settings/ui/Bundle"); // NOI18N
         jLabel1.setText(bundle.getString("AddDocumentType.jLabel1.text")); // NOI18N
 
         documentType.setText(bundle.getString("AddDocumentType.documentType.text")); // NOI18N

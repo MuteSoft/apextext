@@ -20,6 +20,7 @@
  */
 package org.apex.base.settings;
 
+import org.apex.base.constant.EditorKeyConstants;
 import org.apex.base.util.StringUtil;
 import java.awt.Color;
 
@@ -79,7 +80,7 @@ public class GeneralSectionConfiguration extends AbstractConfiguration {
     /**
      * Maximum recent files count.
      */
-    private int maxRecentFilesCount = 5;
+    private int maxRecentFilesCount = EditorKeyConstants.MAX_RECENT_FILES;
     /**
      * A boolean that indicates whether or not consoles are reused.
      */

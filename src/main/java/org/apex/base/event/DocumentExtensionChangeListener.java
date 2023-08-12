@@ -23,6 +23,7 @@ import org.apex.base.core.EditorBase;
 import org.apex.base.data.AbstractDocument;
 import org.apex.base.data.DocumentWrapper;
 import org.apex.base.data.EditorContext;
+import org.apex.base.data.HighlightedDocument;
 import org.apex.base.data.IDocumentType;
 import org.apex.base.settings.DocumentTypesConfiguration;
 import org.apex.base.settings.event.DocTypesConfigChangeEvent;
@@ -73,8 +74,8 @@ public class DocumentExtensionChangeListener implements
 
         // Check whether document type (where this file extension belongs to) is affected
         // Exclude document type 'DEFAULT' here, because 'DEFAULT' is not counted.        
-        if (!docType.equals(IDocumentType.DEFAULT_DOCUMENT) &&
-                !docTypesConfig.isDocTypeAffected(docType)) {
+        if (!docType.equals(IDocumentType.DEFAULT_DOCUMENT)
+                && !docTypesConfig.isDocTypeAffected(docType)) {
             // Return if this document type is not affected.
             return;
         }
@@ -88,9 +89,13 @@ public class DocumentExtensionChangeListener implements
             return;
         }
         // If yes then create new document type value and apply new styles
-        file = DocumentCreator.verifyAndMigrateDocument(file, file.getAbsolutePath(), getContext());
-        file.getDocument().setHighlightStyle(file.getLexer(),
-                file.getDocumentStyle());
+        file = DocumentCreator.verifyAndMigrateDocument(file, file.
+                getAbsolutePath(), getContext());
+        if (file.getDocument() instanceof HighlightedDocument) {
+            ((HighlightedDocument) file.getDocument()).setHighlightStyle(file.
+                    getLexer(),
+                    file.getDocumentStyle());
+        }
         // Fix for bug id 2128941 (sourceforge.net)
         this.documentWrapper.setDocument(file);
     }

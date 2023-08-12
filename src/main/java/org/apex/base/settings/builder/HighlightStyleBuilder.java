@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
+import org.apex.base.util.StringUtil;
 
 /**
  * Builds highlight style configuration object from file.
@@ -95,11 +96,11 @@ public class HighlightStyleBuilder extends ConfigurationBuilderSupport {
                                    String highlightType,
                                    Map<String, HighlightColor> result) {
         HighlightColor highlight = new HighlightColor();
-        Vector<String> tokens =
-                ConfigurationUtility.getListFromString(highlightStyle,
+        String[] tokens =
+                StringUtil.getArrayFromString(highlightStyle,
                 INTRA_SEPARATOR);
-        highlight.setForeground(ConfigurationUtility.getColor(tokens.get(0)));
-        highlight.setBackground(ConfigurationUtility.getColor(tokens.get(1)));
+        highlight.setForeground(ConfigurationUtility.getColor(tokens[0]));
+        highlight.setBackground(ConfigurationUtility.getColor(tokens[1]));
 
         result.put(highlightType, highlight);
     }

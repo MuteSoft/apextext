@@ -20,37 +20,38 @@
  */
 package org.apex.base.core;
 
-import java.lang.reflect.InvocationTargetException;
-import javax.swing.event.ChangeEvent;
-import org.apex.base.data.EditorContext;
-import org.apex.base.util.TabUtil;
-import org.apex.base.component.ApexTabbedPane;
-import org.apex.base.component.WindowTitleBar;
-import org.apex.base.component.OutputTabComponent;
-import org.apex.base.component.ApexPanel;
-import org.apex.base.constant.MenuConstants;
-import org.apex.base.component.ApexSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
 import org.apex.base.component.AbstractIconButton;
 import org.apex.base.component.ApexButton;
+import org.apex.base.component.ApexPanel;
+import org.apex.base.component.ApexSplitPane;
+import org.apex.base.component.ApexTabbedPane;
 import org.apex.base.component.Console;
+import org.apex.base.component.OutputTabComponent;
+import org.apex.base.component.WindowTitleBar;
 import org.apex.base.constant.EditorKeyConstants;
+import org.apex.base.constant.MenuConstants;
 import org.apex.base.data.Command;
+import org.apex.base.data.EditorContext;
 import org.apex.base.event.BasicTabChangeListener;
+import org.apex.base.logging.Logger;
 import org.apex.base.util.ImageCreator;
+import org.apex.base.util.TabUtil;
 
 /**
  * The output window holds console, search results etc.
@@ -61,6 +62,7 @@ import org.apex.base.util.ImageCreator;
  * @version 1.1
  * @since Apex 1.0
  */
+@SuppressWarnings("serial")
 public class OutputWindow extends ApexPanel {
 
     /**
@@ -80,7 +82,7 @@ public class OutputWindow extends ApexPanel {
      */
     private static int consoleSequence = 0;
     /**
-     * Conatisn start, stop, clear buttons etc. It is common for all consoles.
+     * Console start, stop, clear buttons etc. It is common for all consoles.
      */
     private ConsoleOptions consoleOptions;
     /**
@@ -90,7 +92,7 @@ public class OutputWindow extends ApexPanel {
             createImageIcon(
             EditorBase.class, EditorKeyConstants.OUTPUT_WINDOW_TAB_ICON);
     /**
-     * A boolean that indicates whether or not consoles to be reused.
+     * A Boolean that indicates whether or not consoles to be reused.
      */
     private static boolean reuseConsole;
     /**
@@ -115,13 +117,14 @@ public class OutputWindow extends ApexPanel {
     @SuppressWarnings("unchecked")
     private void createOutputWindow() {
         this.setLayout(new BorderLayout());
-        this.consoles = new ArrayList<Console>(3);
+        this.consoles = new ArrayList<>(3);
         outputTabbedPane = new ApexTabbedPane(ApexTabbedPane.BOTTOM, false,
                 false);
 
         // Create the title bar.
         titleBar = new WindowTitleBar(OUTPUT_WINDOW_TITLE) {
 
+            @Override
             protected void executeOnClick(ActionEvent e) {
                 getContext().getEditorComponents().getEditorBody().
                         getOutputWindow().setVisible(
@@ -144,7 +147,7 @@ public class OutputWindow extends ApexPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
+                if (e.getClickCount() == 1) {
                     if (getParent() instanceof ApexSplitPane) {
                         ApexSplitPane splitPane = (ApexSplitPane) getParent();
                         if (splitPane.getDividerLocation() <= 100) {
@@ -160,6 +163,7 @@ public class OutputWindow extends ApexPanel {
                 }
             }
         });
+        titleBar.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
         this.consoleOptions = new ConsoleOptions();
         this.add(consoleOptions, BorderLayout.WEST);
         this.add(titleBar, BorderLayout.NORTH);
@@ -178,16 +182,11 @@ public class OutputWindow extends ApexPanel {
             setTitle1(command);
         } else {
             try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-
-                    public void run() {
-                        setTitle1(command);
-                    }
+                SwingUtilities.invokeAndWait(() -> {
+                    setTitle1(command);
                 });
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            } catch (InvocationTargetException ex) {
-                ex.printStackTrace();
+            } catch (InterruptedException | InvocationTargetException ex) {
+                Logger.logWarning("Unable to set title of output window", ex);
             }
         }
 
@@ -332,7 +331,7 @@ public class OutputWindow extends ApexPanel {
      * @return The list of active consoles.
      */
     public List<Console> getActiveConsoles() {
-        List<Console> activeConsoles = new ArrayList<Console>(5);
+        List<Console> activeConsoles = new ArrayList<>(5);
         for (Console console : consoles) {
             if (console.isProcessRunning()) {
                 activeConsoles.add(console);
@@ -351,34 +350,31 @@ public class OutputWindow extends ApexPanel {
 
     /**
      * Enables or disables console options such as start, stop, clear etc.
-     * @param enable A boolean that indicates whether or not console options to be enabled.
+     * @param enable A Boolean that indicates whether or not console options to
+     * be enabled.
      */
     public void enableConsoleOptionButtons(final boolean enable) {
         if (SwingUtilities.isEventDispatchThread()) {
             enableConsoleOptionButtons1(enable);
         } else {
             try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-
-                    public void run() {
-                        enableConsoleOptionButtons1(enable);
-                    }
+                SwingUtilities.invokeAndWait(() -> {
+                    enableConsoleOptionButtons1(enable);
                 });
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            } catch (InvocationTargetException ex) {
-                ex.printStackTrace();
+            } catch (InterruptedException | InvocationTargetException ex) {
+                Logger.logWarning("Unable to enable console option buttons", ex);
             }
         }
     }
 
     /**
      * Enables or disables console options such as start, stop, clear etc.
-     * @param enable A boolean that indicates whether or not console options to be enabled.
+     * @param enable A Boolean that indicates whether or not console options to
+     * be enabled.
      */
     private void enableConsoleOptionButtons1(boolean enable) {
-        this.consoleOptions.startButton.setEnabled(enable);
-        this.consoleOptions.stopButton.setEnabled(!enable);
+        this.consoleOptions.getStartButton().setEnabled(enable);
+        this.consoleOptions.getStopButton().setEnabled(!enable);
     }
 
     /**
@@ -389,15 +385,15 @@ public class OutputWindow extends ApexPanel {
         /**
          * The start button.
          */
-        private ApexButton startButton;
+        private final ApexButton startButton;
         /**
          * The stop button.
          */
-        private ApexButton stopButton;
+        private final ApexButton stopButton;
         /**
          * The clear button.
          */
-        private ApexButton clearButton;
+        private final ApexButton clearButton;
 
         /**
          * Creates a default instance of console options.
@@ -409,29 +405,20 @@ public class OutputWindow extends ApexPanel {
             this.setLayout(new FlowLayout(FlowLayout.CENTER));
             startButton = new ConsoleOptionButton(
                     EditorKeyConstants.CONSOLE_START_ICON, "Re-run");
-            startButton.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    getCurrentConsole().restartProcess();
-                }
+            startButton.addActionListener((ActionEvent e) -> {
+                getCurrentConsole().restartProcess();
             });
             this.add(startButton);
             stopButton = new ConsoleOptionButton(
                     EditorKeyConstants.CONSOLE_STOP_ICON, "Stop");
-            stopButton.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    getCurrentConsole().stopProcess();
-                }
+            stopButton.addActionListener((ActionEvent e) -> {
+                getCurrentConsole().stopProcess();
             });
             this.add(stopButton);
             clearButton = new ConsoleOptionButton(
                     EditorKeyConstants.CONSOLE_CLEAR_ICON, "Clear");
-            clearButton.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    getCurrentConsole().clearResultArea();
-                }
+            clearButton.addActionListener((ActionEvent e) -> {
+                getCurrentConsole().clearResultArea();
             });
             this.add(clearButton);
             //startButton.setEnabled(false);

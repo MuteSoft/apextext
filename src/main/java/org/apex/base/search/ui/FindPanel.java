@@ -31,6 +31,7 @@ import org.apex.base.search.SearchTextModel;
 import org.apex.base.ui.text.UIDialogModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
@@ -345,7 +346,7 @@ public class FindPanel extends javax.swing.JPanel implements UIDialogModel {
      * @return The data model for search key dropdown.
      */
     public ComboBoxModel getSearchKeyListModel() {
-        return new DefaultComboBoxModel(model.getSearchKeys());
+        return new DefaultComboBoxModel(new Vector(model.getSearchKeys()));
     }
 
     /**

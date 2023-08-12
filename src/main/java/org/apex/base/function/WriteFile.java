@@ -31,6 +31,7 @@ import java.io.IOException;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Segment;
+import org.apex.base.util.EditorUtil;
 import org.apex.base.util.FileUtil;
 
 /**
@@ -39,7 +40,7 @@ import org.apex.base.util.FileUtil;
  * <p>
  * The content to be written is fetched from given document's underlying data model.
  * @author Mrityunjoy Saha
- * @version 1.0
+ * @version 1.1
  * @since Apex 1.0
  */
 public class WriteFile extends Function {
@@ -60,18 +61,21 @@ public class WriteFile extends Function {
      */
     protected void doExecute(InputParams in, OutputParams out) {
         AbstractDocument savingFile = (AbstractDocument) in.get("SAVING_FILE");
-        String characterSet = in.get("CHARACTER_SET") == null ? EditorKeyConstants.DEFAULT_CHARACTER_ENCODING
+        savingFile.setReadWriteInProgress(true);
+        String characterSet = in.get("CHARACTER_SET") == null
+                ? EditorKeyConstants.DEFAULT_CHARACTER_ENCODING
                 : (String) in.get("CHARACTER_SET");
         DefaultStyledDocument doc = savingFile.getDocument();
         BufferedOutputStream saveAsFileBuffStream = null;
         FileOutputStream saveAsFileStream = null;
         try {
-            Logger.logInfo("Writing file '" + savingFile.getAbsolutePath() +
-                    "' to disk. Encoding used: " + characterSet, getClass().
+            Logger.logInfo("Writing file '" + savingFile.getAbsolutePath()
+                    + "' to disk. Encoding used: " + characterSet, getClass().
                     getName(), "doExecute");
             saveAsFileStream = new FileOutputStream(savingFile);
             saveAsFileBuffStream = new BufferedOutputStream(saveAsFileStream);
-            int nleft = doc.getLength();
+            int total = doc.getLength();;
+            int nleft = total;
             Segment text = new Segment();
             int offs = 0;
             text.setPartialReturn(true);
@@ -82,19 +86,34 @@ public class WriteFile extends Function {
                         characterSet));
                 nleft -= text.count;
                 offs += text.count;
+                getContext().getEditorComponents().getTaskProgressIndicator().
+                        setProgress(EditorUtil.calculateProgressPercentage(total,
+                        nleft, 100));               
             }
+             savingFile.setLastSaved(savingFile.lastModified());
+            // @TODO When buffer is filled it's writing to file system and that is causing
+            // file modification time change in file system. To document change tracker,
+            // file's last modification time is greater than file's last saved time in editor.
+            // So, due to intermedite flush document change tracker will trigger file modification
+            // warning for reload of the file in editor.
+            // SOLUTION: This can be solved by introducing a flag to document which will indicate
+            // editor is currently interacting with file system and document change tracker can skip
+            // checks if this flag is set. The flag name can be ReadWriteInProgress.
+            // This flag can be set at the begining of the function and can be unset at the end of the function.
             saveAsFileBuffStream.flush();
             // Update the last modification time - as by default it will be current timestamp.
             savingFile.setLastSaved(savingFile.lastModified());
+            getContext().getEditorComponents().getTaskProgressIndicator().finish();
         } catch (IOException io) {
-            Logger.logError("Error while writing document text to file system. Document: " +
-                    savingFile.getAbsolutePath(), io);
+            Logger.logError("Error while writing document text to file system. Document: "
+                    + savingFile.getAbsolutePath(), io);
         } catch (BadLocationException ble) {
-            Logger.logError("Error while writing document text to file system. Document: " +
-                    savingFile.getAbsolutePath(), ble);
+            Logger.logError("Error while writing document text to file system. Document: "
+                    + savingFile.getAbsolutePath(), ble);
         } finally {
             FileUtil.closeIOStream(saveAsFileBuffStream);
             FileUtil.closeIOStream(saveAsFileStream);
+            savingFile.setReadWriteInProgress(false);
         }
     }
 

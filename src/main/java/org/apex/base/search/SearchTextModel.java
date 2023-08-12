@@ -20,8 +20,9 @@
  */
 package org.apex.base.search;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apex.base.data.UIDataModel;
-import java.util.Vector;
 
 /**
  * The data model used for searching and replacing text in editor.
@@ -34,11 +35,11 @@ public class SearchTextModel implements UIDataModel {
     /**
      * The list of search keys.
      */
-    private Vector<String> searchKeys = new Vector<String>();
+    private List<String> searchKeys = new ArrayList<String>();
     /**
      * The list of replace keys.
      */
-    private Vector<String> replaceKeys = new Vector<String>();
+    private List<String> replaceKeys = new ArrayList<String>();
     /**
      * The key to search.
      */
@@ -79,6 +80,10 @@ public class SearchTextModel implements UIDataModel {
      * A boolean that indicates whether wrap search is enabled.
      */
     private boolean wrapSearch = true;
+    /**
+     * The list of folders.
+     */
+    private List<String> folders = new ArrayList<String>();
 
     /**
      * Constructs a new instance of {@code SearchTextModel}.
@@ -237,7 +242,7 @@ public class SearchTextModel implements UIDataModel {
      * Returns a list of search keys.
      * @return A list of search keys.
      */
-    public Vector<String> getSearchKeys() {
+    public List<String> getSearchKeys() {
         return searchKeys;
     }
 
@@ -245,7 +250,7 @@ public class SearchTextModel implements UIDataModel {
      * Returns a list of replace keys.
      * @return A list of replace keys.
      */
-    public Vector<String> getReplaceKeys() {
+    public List<String> getReplaceKeys() {
         return replaceKeys;
     }
 
@@ -273,10 +278,10 @@ public class SearchTextModel implements UIDataModel {
      */
     @Override
     public String toString() {
-        return "searchKey: " + searchKey + "replaceKey: " + replaceKey + "backwardSearch: " +
-                backwardSearch + "caseSensitive: " + caseSensitive + "highlightSearch: " +
-                highlightSearch + "incrementalSearch: " + incrementalSearch + "regularExpression: " +
-                regularExpression + "searchSelection: " + searchSelection + "wholeWord: " +
-                wholeWord + "wrapSearch: " + wrapSearch;
+        return "searchKey: " + searchKey + "replaceKey: " + replaceKey + "backwardSearch: "
+                + backwardSearch + "caseSensitive: " + caseSensitive + "highlightSearch: "
+                + highlightSearch + "incrementalSearch: " + incrementalSearch + "regularExpression: "
+                + regularExpression + "searchSelection: " + searchSelection + "wholeWord: "
+                + wholeWord + "wrapSearch: " + wrapSearch;
     }
 }

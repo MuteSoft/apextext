@@ -46,9 +46,10 @@ public abstract class MenuTarget {
      * @param out Output parameters.
      */
     public final void processMenu(final InputParams in, final OutputParams out) {
+        getContext().getEditorComponents().getTaskProgressIndicator().reset();  
         preProcess(in, out);
         createUI(in, out);
-        postProcess(in, out);
+        postProcess(in, out);        
     }
 
     /**

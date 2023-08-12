@@ -21,18 +21,19 @@
 package org.apex.base.settings.ui;
 
 import java.util.List;
+import java.util.Vector;
 import org.apex.base.component.EditorDialog;
+import org.apex.base.data.IDocumentType;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.settings.DocumentTypesConfiguration;
 import org.apex.base.settings.ui.text.UIConfigurationDataModel;
 import org.apex.base.settings.ui.text.UIConfigurationUtility;
-import java.util.Vector;
-import org.apex.base.data.IDocumentType;
 
 /**
  * The document extensions maintenance page. Using this configuration page
- * document extensions can be added or modifed or removed.
+ * document extensions can be added or modified or removed.
+ *
  * @author Mrityunjoy Saha
  * @version 1.0
  * @since Apex 1.0
@@ -43,7 +44,7 @@ public class GeneralDocumentTypes extends javax.swing.JPanel implements
     /**
      * Document types configuration.
      */
-    private DocumentTypesConfiguration docTypesConfig;
+    private final DocumentTypesConfiguration docTypesConfig;
     /**
      * Selected document type.
      */

@@ -41,12 +41,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Vector;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 import org.apex.base.constant.EditorKeyConstants;
 import org.apex.base.constant.MenuConstants;
+import org.apex.base.function.AdvancedReadFile;
 import org.apex.base.logging.Logger;
 import org.apex.base.util.FileUtil;
 import org.apex.base.util.StringUtil;
@@ -58,7 +58,7 @@ import org.apex.base.util.StringUtil;
  * From this file chooser user can choose a single file or multiple files and open those in editor to view 
  * or to edit or both.
  * @author Mrityunjoy Saha
- * @version 1.3
+ * @version 1.4
  * @since Apex 1.0
  */
 public class OpenFileMenu extends BasicUIMenu {
@@ -233,8 +233,8 @@ public class OpenFileMenu extends BasicUIMenu {
             // Add to recent files list.
             // @TODO In case of bulk open refreshing menu bar for every document
             // may cause performnace issues.
-//            getContext().getEditorProperties().getRecentFiles().
-//                    pushAndRefreshMenuBar(file);
+            getContext().getEditorProperties().getRecentFiles().
+                    pushAndRefreshMenuBar(file);
             if (getContext().getEditorProperties().getNoOfOpenDocuments() == 1) {
                 MenuUtil.updateMenuStatus(getContext(), true);
                 MenuUtil.updateMenuStatus(getContext(), file);
@@ -323,7 +323,8 @@ public class OpenFileMenu extends BasicUIMenu {
         InputParams input = new InputParams();
         input.put("OPENING_FILE",
                 file);
-        Function read = new ReadFile();
+        //Function read = new ReadFile();
+        Function read = new AdvancedReadFile();
         read.process(input, null);
         /* Open file from disk -End */
     }

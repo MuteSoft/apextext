@@ -80,12 +80,12 @@ public class EditorKeyConstants {
      * File name where common messages are stored.
      */
     public static final String COMMON_MESSAGES =
-            "org.apex.base.common.resources.Messages";
+            "common.Messages";
     /**
      * File name where menu messages are stored.
      */
     public static final String MENU_MESSAGES =
-            "org.apex.base.menu.resources.Messages";
+            "menu.Messages";
     /**
      * Default character encoding used by editor.
      * <p>
@@ -96,7 +96,7 @@ public class EditorKeyConstants {
      * File name where settings messages are stored.
      */
     public static final String SETTINGS_MESSAGES =
-            "org.apex.base.settings.resources.Messages";
+            "settings.Messages";
     /**
      * The path of tab close button icon.
      */
@@ -108,7 +108,7 @@ public class EditorKeyConstants {
     /**
      * The property name to enable console log.
      */
-    public static final String CONSOLE_LOGGING_JVM_PARAM = "apex.console";
+    public static final String CONSOLE_LOG_JVM_PARAM = "apex.console";
     /**
      * The property name to specify log directory.
      */
@@ -133,7 +133,7 @@ public class EditorKeyConstants {
      * Application configuration properties file.
      */
     public static final String APPLICATION_CONFIGURATION_FILE =
-            "config.xml";
+            "config.cfg";
     /**
      *  Application configuration properties file maximum allowed size in bytes.
      */
@@ -172,7 +172,7 @@ public class EditorKeyConstants {
     /**
      * The maximum number of files in recent files list.
      */
-    public static final int MAX_RECENT_FILES = 5;
+    public static final int MAX_RECENT_FILES = 15;
     /**
      * The default icon for all document types.
      */

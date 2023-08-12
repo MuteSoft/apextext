@@ -33,6 +33,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.text.AbstractDocument;
+import org.apex.base.event.FolderBrowserEventHandler;
 
 /**
  * A form to add a custom tool. To add a custom tool a tool Id, name, executable etc
@@ -88,6 +89,7 @@ public class AddCustomTool extends CustomToolChangeSupport {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         browseWorkingDir = new javax.swing.JButton();
+        browseWorkingDir.addActionListener(new FolderBrowserEventHandler(this.workingDir));
         defaultOptions = new javax.swing.JTextField();
         defaultInputParams = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -136,11 +138,6 @@ public class AddCustomTool extends CustomToolChangeSupport {
         jLabel9.setText("Input Parameters:");
 
         browseWorkingDir.setText("Browse");
-        browseWorkingDir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseWorkingDirActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText(EditorUtil.getMultipleOptionsNote());
 
@@ -297,20 +294,6 @@ public class AddCustomTool extends CustomToolChangeSupport {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         closeWindow();
     }//GEN-LAST:event_cancelActionPerformed
-
-    private void browseWorkingDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseWorkingDirActionPerformed
-        JFileChooser fileChooser =
-                new JFileChooser();
-        fileChooser.setDragEnabled(true);
-        fileChooser.setMultiSelectionEnabled(false);
-        // Add file Filters 
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fileChooser.showOpenDialog(null);
-        File openFile = fileChooser.getSelectedFile();
-        if (openFile != null) {
-            this.workingDir.setText(openFile.getAbsolutePath());
-        }
-}//GEN-LAST:event_browseWorkingDirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseExecutable;
