@@ -161,7 +161,7 @@ public class AboutToolView extends javax.swing.JPanel implements UIDialogModel {
                             .addComponent(contact, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
                             .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(copyrightInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(copyrightInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(114, 114, 114))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)

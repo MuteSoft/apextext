@@ -20,20 +20,6 @@
  */
 package org.apex.base.core;
 
-import org.apex.base.data.EditorComponents;
-import org.apex.base.data.EditorProperties;
-import org.apex.base.component.DocumentChangeTracker;
-import org.apex.base.constant.MenuConstants;
-import org.apex.base.data.EditorContext;
-import org.apex.base.data.InputParams;
-import org.apex.base.data.OutputParams;
-import org.apex.base.logging.Logger;
-import org.apex.base.menu.OpenFileMenu;
-import org.apex.base.util.EditorUtil;
-import org.apex.base.component.ApexFrame;
-import org.apex.base.component.ApexPanel;
-import org.apex.base.constant.EditorKeyConstants;
-import org.apex.base.util.StringUtil;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -51,8 +37,22 @@ import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.apex.base.component.ApexFrame;
+import org.apex.base.component.ApexPanel;
+import org.apex.base.component.DocumentChangeTracker;
+import org.apex.base.constant.EditorKeyConstants;
+import org.apex.base.constant.MenuConstants;
+import org.apex.base.data.EditorComponents;
+import org.apex.base.data.EditorContext;
+import org.apex.base.data.EditorProperties;
+import org.apex.base.data.InputParams;
+import org.apex.base.data.OutputParams;
 import org.apex.base.debug.EDTThreadCheckingRepaintManager;
+import org.apex.base.logging.Logger;
+import org.apex.base.menu.OpenFileMenu;
+import org.apex.base.util.EditorUtil;
 import org.apex.base.util.FileUtil;
+import org.apex.base.util.StringUtil;
 
 /**
  * Base class of the platform.
@@ -308,8 +308,8 @@ public abstract class EditorBase {
      * If command line argument are passed to set these System properties then
      * those are not replaced.
      * <p>
-     * <strong>NOTE: </strong> When a new system properties is added modify this method and add
-     * logic for that new property.
+     * <strong>NOTE: </strong> When a new system properties is added modify this
+     * method and add     * logic for that new property.
      */
     private static void readApplicationConfiguration() {
         File file = null;
@@ -345,7 +345,7 @@ public abstract class EditorBase {
             }
         } catch (Exception ex) {
             // Don't do anything. Print Stack Trace is intentional.
-            ex.printStackTrace();
+            // ex.printStackTrace();
             Logger.logError("Failed to load/parse application configuration file: "
                     + file, ex);
         } finally {

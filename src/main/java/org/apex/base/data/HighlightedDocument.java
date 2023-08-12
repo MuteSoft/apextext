@@ -23,13 +23,6 @@
  */
 package org.apex.base.data;
 
-import org.apex.base.highlighter.DocumentReader;
-import org.apex.base.highlighter.SyntaxHighlighter;
-import org.apex.base.highlighter.lexer.Lexer;
-import org.apex.base.highlighter.style.DocumentStyle;
-import org.apex.base.settings.EditorConfiguration;
-import org.apex.base.settings.event.DocTypesConfigChangeListener;
-import org.apex.base.settings.event.SyntaxStyleConfigChangeListener;
 import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -38,7 +31,14 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.SimpleAttributeSet;
+import org.apex.base.highlighter.DocumentReader;
+import org.apex.base.highlighter.SyntaxHighlighter;
+import org.apex.base.highlighter.lexer.Lexer;
+import org.apex.base.highlighter.style.DocumentStyle;
 import org.apex.base.logging.Logger;
+import org.apex.base.settings.EditorConfiguration;
+import org.apex.base.settings.event.DocTypesConfigChangeListener;
+import org.apex.base.settings.event.SyntaxStyleConfigChangeListener;
 
 /**
  * A document that supports syntax highlighting. It can be marked up with character and paragraph 
@@ -54,7 +54,7 @@ public class HighlightedDocument extends DefaultStyledDocument {
      * A reader wrapped around the document so that the document can be fed into
      * the lexer.
      */
-    private DocumentReader documentReader;
+    private final DocumentReader documentReader;
     /**
      * If non-null, all is drawn with this style (no lexing).
      */
@@ -66,12 +66,12 @@ public class HighlightedDocument extends DefaultStyledDocument {
     /**
      * A thread that handles the actual coloring.
      */
-    private SyntaxHighlighter colorer;
+    private final SyntaxHighlighter colorer;
     /**
      * A lock for modifying the document, or for actions that depend on the
      * document not being modified.
      */
-    private Object docLock = new Object();
+    private final Object docLock = new Object();
     /**
      * The syntax highlighting style info.
      */
@@ -110,21 +110,18 @@ public class HighlightedDocument extends DefaultStyledDocument {
 
     /**
      * Sets the syntax lexer and syntax highlighting style info for this document.
-     * @param lexer The synatx lexer.
+     * @param lexer The syntax lexer.
      * @param style The syntax highlighting style info.
      */
     public void setHighlightStyle(Object lexer, DocumentStyle style) {
         this.syntaxStyle = style;
         if (lexer == null) {
             this.syntaxLexer = null;
-            SwingUtilities.invokeLater(new Runnable() {
-
-                public void run() {
-                    setCharacterAttributes(0,
-                            getLength(),
-                            new SimpleAttributeSet(),
-                            true);
-                }
+            SwingUtilities.invokeLater(() -> {
+                setCharacterAttributes(0,
+                        getLength(),
+                        new SimpleAttributeSet(),
+                        true);
             });
             return;
         }

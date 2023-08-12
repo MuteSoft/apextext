@@ -48,7 +48,7 @@ public class FolderSearchMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(450, 240);
+    private static final Point WINDOW_SIZE = new Point(520, 280);
 
     /**
      * Creates a new instance of {@code FolderSearchMenu}.

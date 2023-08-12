@@ -47,6 +47,7 @@ import org.apex.base.search.ui.SearchBox;
  * @see MenuNode
  */
 public class EditorToolBar extends JToolBar {
+    private static Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
 
     /**
      * The search box in the toolbar.
@@ -140,14 +141,14 @@ public class EditorToolBar extends JToolBar {
 
         @Override
         public Border getBorder() {
-            return super.getBorder();
+            return EditorToolBar.EMPTY_BORDER;
         }
 
         @Override
         public Insets getInsets() {
             Insets toolIconMargin = super.getInsets();
-            toolIconMargin.left = toolIconMargin.left + 3;
-            toolIconMargin.right = toolIconMargin.right + 3;
+            toolIconMargin.left = toolIconMargin.left + 5;
+            toolIconMargin.right = toolIconMargin.right + 5;
             return toolIconMargin;
         }
     }

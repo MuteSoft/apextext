@@ -58,7 +58,7 @@ import org.apex.base.util.StringUtil;
  * From this file chooser user can choose a single file or multiple files and open those in editor to view 
  * or to edit or both.
  * @author Mrityunjoy Saha
- * @version 1.3
+ * @version 1.4
  * @since Apex 1.0
  */
 public class OpenFileMenu extends BasicUIMenu {
@@ -233,8 +233,8 @@ public class OpenFileMenu extends BasicUIMenu {
             // Add to recent files list.
             // @TODO In case of bulk open refreshing menu bar for every document
             // may cause performnace issues.
-//            getContext().getEditorProperties().getRecentFiles().
-//                    pushAndRefreshMenuBar(file);
+            getContext().getEditorProperties().getRecentFiles().
+                    pushAndRefreshMenuBar(file);
             if (getContext().getEditorProperties().getNoOfOpenDocuments() == 1) {
                 MenuUtil.updateMenuStatus(getContext(), true);
                 MenuUtil.updateMenuStatus(getContext(), file);
