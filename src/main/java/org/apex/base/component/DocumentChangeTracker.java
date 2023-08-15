@@ -19,6 +19,10 @@
  */
 package org.apex.base.component;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import org.apex.base.common.CommonMessageManager;
 import org.apex.base.constant.EditorKeyConstants;
 import org.apex.base.constant.MenuConstants;
@@ -30,10 +34,6 @@ import org.apex.base.data.EditorContext;
 import org.apex.base.menu.OpenFileMenu;
 import org.apex.base.util.FileUtil;
 import org.apex.base.util.MenuUtil;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 /**
  * A class to track changes in document content by external applications.
@@ -53,7 +53,7 @@ public class DocumentChangeTracker implements ActionListener {
     /**
      * The timer used to generate {@code ActionEvent}s at specified intervals.
      */
-    private Timer timer;
+    private final Timer timer;
 
     /**
      * Creates a new instance of {@code DocumentChangeTracker}. It initializes the
@@ -81,9 +81,6 @@ public class DocumentChangeTracker implements ActionListener {
      * @return {@code true} if the document is changed; otherwise returns {@code false}.
      */
     public boolean isDocumentChanged(AbstractDocument document) {
-        System.out.println("Printing: document.lastModified(): "+document.lastModified());
-        System.out.println("Printing: document.getLastSaved(): "+document.getLastSaved());
-        System.out.println("Printing: document.isReadWriteInProgress(): "+document.isReadWriteInProgress());
         boolean b= (Math.abs(document.lastModified() - document.getLastSaved())
                 > EditorKeyConstants.DOCUMENT_CHANGE_TRACKING_TOLERANCE) && !document.
                 isReadWriteInProgress();
@@ -91,11 +88,12 @@ public class DocumentChangeTracker implements ActionListener {
     }
 
     /**
-     * It tracks changes of currently displayed document in a pre-defined intervals. If a document
-     * is changed a confirmation message is displayed to user, whether user wants to re-load
+     * It tracks changes of currently displayed document in a predefined
+     * intervals. If a document     * is changed a confirmation message is displayed to user, whether user wants to re-load
      * the document from file system.
      * @param evt The action event.
      */
+    @Override
     public void actionPerformed(ActionEvent evt) {
         if (isEditorVisible()) {
             AbstractDocument document = getCurrentDocument();

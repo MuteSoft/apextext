@@ -24,11 +24,11 @@ import java.awt.Point;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.search.SearchTextUtility;
-import org.apex.base.search.ui.FindPanel;
 import org.apex.base.search.ui.FolderSearchView;
 
 /**
- * Creates 'Search Folder' dialog and provides facility to find text in a folder.
+ * Creates "Search Folder" dialog and provides facility to find text in a
+ * folder.
  * <p>
  * It provides following features:
  * <ul>
@@ -48,7 +48,7 @@ public class FolderSearchMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(520, 280);
+    private static final Point WINDOW_SIZE = new Point(520, 260);
 
     /**
      * Creates a new instance of {@code FolderSearchMenu}.
@@ -83,5 +83,10 @@ public class FolderSearchMenu extends SimplePanelDialogMenu {
 
     public String getTitle() {
         return "Folder Search";
+    }
+
+    @Override
+    protected Point getLocation() {
+        return this.getTopRightLocation();
     }
 }

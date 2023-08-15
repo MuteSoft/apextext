@@ -20,11 +20,12 @@
  */
 package org.apex.base.component;
 
+import java.awt.BorderLayout;
+import java.awt.Window;
+import javax.swing.JPanel;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import org.apex.base.logging.Logger;
 
 /**
  * A dialog window which uses a panel to display information.
@@ -54,7 +55,15 @@ public abstract class SimplePanelDialog extends BasicDialog {
     public void createDialog(InputParams input,
             OutputParams output) {        
         if (this.panel != null && !this.panel.isShowing()) {
-            dialog = new ApexDialog(getParentWindow(), getTitle());
+            Window window = getParentWindow();
+            if (window instanceof ApexFrame) {
+                dialog = new ApexDialog((ApexFrame) getParentWindow(), getTitle());
+            } else if (window instanceof ApexDialog) {
+                dialog = new ApexDialog((ApexDialog) getParentWindow(), getTitle());
+            } else {
+                Logger.logError("The parent window type is neither an ApexFrame nor an ApexDialog", null);
+                return;
+            }
             dialog.setModal(isModal());
             dialog.getContentPane().setLayout(new BorderLayout());
             dialog.getContentPane().add(panel);

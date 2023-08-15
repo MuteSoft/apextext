@@ -20,16 +20,16 @@
  */
 package org.apex.base.settings.ui;
 
-import java.awt.event.ActionEvent;
-import org.apex.base.constant.ColorConstants;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import org.apex.base.component.AbstractIconButton;
+import org.apex.base.constant.ColorConstants;
 import org.apex.base.settings.EditorConfiguration;
 import org.apex.base.util.ImageCreator;
 
@@ -272,7 +272,7 @@ public class SettingsMenuPage extends javax.swing.JPanel {
          */
         public SettingsMenuButton(String iconName, String text) {
             super(ImageCreator.createImageIcon(SettingsMenuPage.this.getClass(),
-                    "images/" + iconName));
+                    "images/settings/" + iconName));
             this.setIconTextGap(8);
             this.setText(text);
             setBorder(BorderFactory.createLineBorder(Color.BLACK));

@@ -20,22 +20,6 @@
  */
 package org.apex.base.component;
 
-import org.apex.base.action.AutoIndentationAction;
-import org.apex.base.action.CodeCompletionAction;
-import org.apex.base.action.CodeTemplateAction;
-import org.apex.base.constant.EditorKeyConstants;
-import org.apex.base.core.EditorBase;
-import org.apex.base.core.PopupMenuManager;
-import org.apex.base.data.TypingMode;
-import org.apex.base.dnd.FileAndTextTransferHandler;
-import org.apex.base.event.EditorPopupFocusListener;
-import org.apex.base.event.CodeCompletionKeyListener;
-import org.apex.base.event.DocumentQueueKeyListener;
-import org.apex.base.event.PopupMenuBarListener;
-import org.apex.base.settings.EditorConfiguration;
-import org.apex.base.settings.event.FontStyleConfigChangeListener;
-import org.apex.base.settings.event.GeneralSectionConfigChangeEvent;
-import org.apex.base.settings.event.GeneralSectionConfigChangeListener;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -55,7 +39,24 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Highlighter;
 import javax.swing.text.StyledDocument;
+import org.apex.base.action.AutoIndentationAction;
+import org.apex.base.action.CodeCompletionAction;
+import org.apex.base.action.CodeTemplateAction;
+import org.apex.base.constant.EditorKeyConstants;
+import org.apex.base.core.EditorBase;
+import org.apex.base.core.PopupMenuManager;
+import org.apex.base.data.TypingMode;
+import org.apex.base.dnd.FileAndTextTransferHandler;
+import org.apex.base.event.CaretListenerImpl;
+import org.apex.base.event.CodeCompletionKeyListener;
+import org.apex.base.event.DocumentQueueKeyListener;
+import org.apex.base.event.EditorPopupFocusListener;
+import org.apex.base.event.PopupMenuBarListener;
+import org.apex.base.settings.EditorConfiguration;
 import org.apex.base.settings.GeneralSectionConfiguration;
+import org.apex.base.settings.event.FontStyleConfigChangeListener;
+import org.apex.base.settings.event.GeneralSectionConfigChangeEvent;
+import org.apex.base.settings.event.GeneralSectionConfigChangeListener;
 
 /**
  * The base text editor.
@@ -70,7 +71,8 @@ public class TextEditor extends ApexTextPane {
      */
     private Highlighter.Highlight[] searchHighlights;
     /**
-     * A boolean that indicates whether or not right margin of editor should be visible or not.
+     * A Boolean that indicates whether or not right margin of editor should be
+     * visible or not.
      */
     private boolean viewRightMargin;
     /**
@@ -170,7 +172,7 @@ public class TextEditor extends ApexTextPane {
         this.setTransferHandler(new FileAndTextTransferHandler());
 
         // Add Caret Listener to the text pane.
-        //this.addCaretListener(new CaretListenerImpl());
+        this.addCaretListener(new CaretListenerImpl());
 
         // Add the MouseListener to the text pane for popup menu.
         this.addMouseListener(new PopupMenuBarListener(

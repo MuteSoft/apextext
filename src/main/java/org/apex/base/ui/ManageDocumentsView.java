@@ -21,6 +21,14 @@
 package org.apex.base.ui;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Vector;
+import javax.swing.AbstractListModel;
+import javax.swing.JDialog;
+import javax.swing.ListModel;
+import org.apex.base.component.ApexLabel;
+import org.apex.base.component.EditorListCellRenderer;
 import org.apex.base.core.EditorBase;
 import org.apex.base.data.AbstractDocument;
 import org.apex.base.data.DocumentWrapper;
@@ -28,17 +36,9 @@ import org.apex.base.data.EditorContext;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.event.GoToFileEventHandler;
+import org.apex.base.menu.CloseMultipleFilesMenu;
 import org.apex.base.ui.text.UIDialogModel;
 import org.apex.base.util.StringUtil;
-import org.apex.base.component.ApexLabel;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
-import javax.swing.AbstractListModel;
-import javax.swing.JDialog;
-import javax.swing.ListModel;
-import org.apex.base.component.EditorListCellRenderer;
-import org.apex.base.menu.CloseMultipleFilesMenu;
 
 /**
  * A panel to display all opened documents in a list. Facility to switch to a specific document
@@ -106,21 +106,21 @@ public class ManageDocumentsView extends javax.swing.JPanel implements
         });
         jScrollPane1.setViewportView(docList);
 
-        switchTo.setText("Switch to Document"); // NOI18N
+        switchTo.setText("Switch"); // NOI18N
         switchTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 switchToActionPerformed(evt);
             }
         });
 
-        closeDocs.setText("Close Document(s)"); // NOI18N
+        closeDocs.setText("Close"); // NOI18N
         closeDocs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeDocsActionPerformed(evt);
             }
         });
 
-        close.setText("Close"); // NOI18N
+        close.setText("Cancel"); // NOI18N
         close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeActionPerformed(evt);
@@ -133,15 +133,19 @@ public class ManageDocumentsView extends javax.swing.JPanel implements
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(switchTo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(close)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeDocs, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(switchTo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(close))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(closeDocs, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

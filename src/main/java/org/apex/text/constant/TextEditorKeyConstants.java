@@ -35,23 +35,28 @@ public class TextEditorKeyConstants {
     /**
      * Editor version.
      */
-    public static final String EDITOR_VERSION = "1.3";
+    public static final String EDITOR_VERSION = "2.0";
     /**
      * Online help URL.
      */
-    public static final String ONLINE_HELP_URL = "http://openapex.org/text/Documentation.php";
+    public static final String ONLINE_HELP_URL = "https://mutesoft.com/products/text/apextext.php?id=apextext-doc";
     /**
      * Report bug URL.
      */
-    public static final String REPORT_BUG_URL = "https://sourceforge.net/tracker/?group_id=230027&atid=1078991";
+    public static final String REPORT_BUG_URL = "https://github.com/MuteSoft/apextext/issues";
     /**
      * Request feature URL.
      */
-    public static final String REQUEST_FEATURE_URL = "https://sourceforge.net/tracker/?group_id=230027&atid=1078994";
+    public static final String REQUEST_FEATURE_URL = "https://github.com/MuteSoft/apextext/issues";
     /**
      * Online support URL.
      */
-    public static final String ONLINE_SUPPORT_URL = "http://openapex.org/text";
+    public static final String ONLINE_SUPPORT_URL = "https://mutesoft.com/text";
+
+    /**
+     * Source code repository URL
+     */
+    public static final String SOURCE_CODE_REPO_URL = "https://github.com/MuteSoft/apextext";
 
     /**
      * Constructs a new instance of {@code TextEditorKeyConstants}.

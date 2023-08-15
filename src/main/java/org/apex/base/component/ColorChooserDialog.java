@@ -20,13 +20,14 @@
  */
 package org.apex.base.component;
 
-import org.apex.base.data.InputParams;
-import org.apex.base.data.OutputParams;
-import org.apex.base.ui.ColorChooser;
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import org.apex.base.data.InputParams;
+import org.apex.base.data.OutputParams;
+import org.apex.base.settings.ui.SimplePanelSettingsDialog;
+import org.apex.base.ui.ColorChooser;
 
 /**
  * A dialog window used to display color picker.
@@ -34,7 +35,7 @@ import javax.swing.JLabel;
  * @version 1.1
  * @since Apex 1.0
  */
-public class ColorChooserDialog extends SimplePanelDialog {
+public class ColorChooserDialog extends SimplePanelSettingsDialog {
 
     /**
      * The singleton instance of this class.

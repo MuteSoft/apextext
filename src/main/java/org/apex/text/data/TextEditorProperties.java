@@ -24,9 +24,9 @@ import java.awt.Image;
 import org.apex.base.constant.EditorKeyConstants;
 import org.apex.base.core.EditorBase;
 import org.apex.base.data.EditorProperties;
+import org.apex.base.util.ImageCreator;
 import org.apex.text.constant.TextEditorKeyConstants;
 import org.apex.text.core.TextEditorBase;
-import org.apex.base.util.ImageCreator;
 
 /**
  * Description goes here.
@@ -80,5 +80,10 @@ public class TextEditorProperties extends EditorProperties {
     @Override
     public String getEditorSupportUrl() {
         return TextEditorKeyConstants.ONLINE_SUPPORT_URL;
+    }
+
+    @Override
+    public String getEditorSourceRepoUrl() {
+        return TextEditorKeyConstants.SOURCE_CODE_REPO_URL;
     }
 }

@@ -20,6 +20,12 @@
  */
 package org.apex.base.search.ui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 import org.apex.base.constant.MenuConstants;
 import org.apex.base.core.EditorBase;
 import org.apex.base.core.MenuManager;
@@ -29,12 +35,6 @@ import org.apex.base.data.OutputParams;
 import org.apex.base.event.FindTextEventHandler;
 import org.apex.base.search.SearchTextModel;
 import org.apex.base.ui.text.UIDialogModel;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.Vector;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDialog;
 import org.apex.base.util.DocumentData;
 
 /**
@@ -261,7 +261,7 @@ public class FindPanel extends javax.swing.JPanel implements UIDialogModel {
                             .addComponent(wrapSearch))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(wholeWord)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(highlightSearch)
                             .addComponent(incrementalSearch)))
@@ -272,7 +272,7 @@ public class FindPanel extends javax.swing.JPanel implements UIDialogModel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(backwardSearch)
                             .addComponent(help))))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void searchKeyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchKeyItemStateChanged
@@ -350,7 +350,7 @@ public class FindPanel extends javax.swing.JPanel implements UIDialogModel {
     }
 
     /**
-     * A key listener for 'search text' field. It is useful for incremental search.
+     * A key listener for search textfield. It is useful for incremental search.
      */
     protected class SearchTextKeyListener extends KeyAdapter {
 

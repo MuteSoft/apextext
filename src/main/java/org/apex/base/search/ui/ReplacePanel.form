@@ -36,19 +36,19 @@
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="incrementalSearch" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="backwardSearch" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="wrapSearch" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="incrementalSearch" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="replaceB" alignment="0" min="-2" pref="87" max="-2" attributes="1"/>
-                  <Component id="replaceAllB" alignment="0" min="-2" max="-2" attributes="1"/>
-                  <Component id="closeB" alignment="0" min="-2" pref="87" max="-2" attributes="1"/>
-                  <Component id="helpB" alignment="0" min="-2" pref="87" max="-2" attributes="1"/>
-                  <Component id="findB" alignment="0" min="-2" pref="87" max="-2" attributes="1"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="replaceAllB" alignment="0" max="32767" attributes="1"/>
+                  <Component id="findB" alignment="0" max="32767" attributes="1"/>
+                  <Component id="replaceB" alignment="0" max="32767" attributes="1"/>
+                  <Component id="closeB" alignment="0" max="32767" attributes="1"/>
+                  <Component id="helpB" alignment="0" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -88,7 +88,7 @@
                           <Component id="wholeWord" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="backwardSearch" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="highlightSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="incrementalSearch" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
@@ -103,7 +103,7 @@
                       <Component id="helpB" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

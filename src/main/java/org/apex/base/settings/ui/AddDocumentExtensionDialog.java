@@ -20,11 +20,10 @@
  */
 package org.apex.base.settings.ui;
 
-import org.apex.base.component.SimplePanelDialog;
-import org.apex.base.settings.DocumentTypesConfiguration;
 import java.awt.Point;
 import javax.swing.JList;
 import org.apex.base.data.IDocumentType;
+import org.apex.base.settings.DocumentTypesConfiguration;
 
 /**
  * A dialog window to display the add document extension form.
@@ -32,12 +31,12 @@ import org.apex.base.data.IDocumentType;
  * @version 1.1
  * @since Apex 1.0
  */
-public class AddDocumentExtensionDialog extends SimplePanelDialog {
+public class AddDocumentExtensionDialog extends SimplePanelSettingsDialog {
 
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(250, 125);
+    private static final Point WINDOW_SIZE = new Point(270, 125);
 
     /**
      * Creates a new instance of {@code AddDocumentExtensionDialog} using specified document types

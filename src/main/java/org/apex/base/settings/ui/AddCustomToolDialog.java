@@ -20,10 +20,9 @@
  */
 package org.apex.base.settings.ui;
 
-import org.apex.base.component.SimplePanelDialog;
-import org.apex.base.settings.CustomToolConfiguration;
 import java.awt.Point;
 import javax.swing.JList;
+import org.apex.base.settings.CustomToolConfiguration;
 
 /**
  * A dialog window to display the add custom tool form.
@@ -31,7 +30,7 @@ import javax.swing.JList;
  * @version 1.0
  * @since Apex 1.0
  */
-public class AddCustomToolDialog extends SimplePanelDialog {
+public class AddCustomToolDialog extends SimplePanelSettingsDialog {
 
     /**
      * The dialog window size.
@@ -58,6 +57,7 @@ public class AddCustomToolDialog extends SimplePanelDialog {
     @Override
     public void makeDialogVisible() {
         ((AddCustomTool) panel).setContainerWindow(this.dialog);
+        //dialog.setLocationRelativeTo();
         super.makeDialogVisible();
     }
 

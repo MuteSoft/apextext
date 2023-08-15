@@ -45,7 +45,6 @@ import org.apex.base.data.HighlightCategories;
 import org.apex.base.settings.EditorConfiguration;
 import org.apex.base.settings.HighlightColor;
 import org.apex.base.settings.event.HighlightStyleConfigChangeEvent;
-import org.apex.base.settings.event.HighlightStyleConfigChangeListener;
 
 /**
  * LineNumberView is a simple line-number gutter that works correctly
@@ -79,6 +78,10 @@ public class LineNumberView extends JComponent {
      * The margin of line number area.
      */
     private static final int MARGIN = 3;
+    /**
+     * The buffer added to line number position.
+     */
+    private static final int LINE_NUMBER_POSITION_BUFFER = 5;
     /**
      * Font metrics.
      */
@@ -140,7 +143,7 @@ public class LineNumberView extends JComponent {
         this.viewFontMetrics = getFontMetrics(viewFont);
         this.maxNumberWidth = viewFontMetrics.stringWidth(String.valueOf(
                 WIDTH_TEMPLATE));
-        this.componentWidth = 2 * MARGIN + maxNumberWidth;
+        this.componentWidth = 2 * MARGIN + maxNumberWidth + LINE_NUMBER_POSITION_BUFFER;
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, BORDER_COLOR));
         HighlightColor lineAreaColor =
                 EditorBase.getContext().getConfiguration().
@@ -148,18 +151,13 @@ public class LineNumberView extends JComponent {
                 HighlightCategories.LINE_NUMBERS);
         this.setBackground(lineAreaColor.getBackground());
         this.setForeground(lineAreaColor.getForeground());
-        EditorConfiguration.addHighlightStyleConfigChangeListener(new HighlightStyleConfigChangeListener() {
-
-            public void propertyValueChanged(
-                    HighlightStyleConfigChangeEvent event) {
-                // Highlight styles changed. May be line number area colors are also changed.
-                HighlightColor lineAreaColor =
-                        EditorBase.getContext().getConfiguration().
-                        getStyleConfig().getHighlightStyle().getHighlightColor(
-                        HighlightCategories.LINE_NUMBERS);
-                setBackground(lineAreaColor.getBackground());
-                setForeground(lineAreaColor.getForeground());
-            }
+        EditorConfiguration.addHighlightStyleConfigChangeListener((HighlightStyleConfigChangeEvent event) -> {
+            // Highlight styles changed. May be line number area colors are also changed.
+            HighlightColor lineAreaColor1 = EditorBase.getContext().getConfiguration().
+                    getStyleConfig().getHighlightStyle().getHighlightColor(
+                            HighlightCategories.LINE_NUMBERS);
+            setBackground(lineAreaColor1.getBackground());
+            setForeground(lineAreaColor1.getForeground());
         });
     }
 

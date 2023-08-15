@@ -20,11 +20,10 @@
  */
 package org.apex.base.component;
 
-import org.apex.base.data.InputParams;
-import org.apex.base.data.OutputParams;
 import java.awt.Point;
 import java.awt.Window;
-import javax.swing.JFrame;
+import org.apex.base.data.InputParams;
+import org.apex.base.data.OutputParams;
 
 /**
  * An interface for creating dialog windows.
@@ -35,8 +34,9 @@ import javax.swing.JFrame;
 public interface EditorDialog {
 
     /**
-     * Returns the title of dialog winow.
-     * @return The title of dialog winow.
+     * Returns the title of dialog window.
+     *
+     * @return The title of dialog window.
      */
     String getTitle();
 
@@ -44,7 +44,7 @@ public interface EditorDialog {
      * Returns the parent container of dialog window.
      * @return The container of dialog window.
      */
-    JFrame getParentWindow();
+    Window getParentWindow();
 
     /**
      * Returns the location of dialog window on screen.
@@ -55,7 +55,8 @@ public interface EditorDialog {
     /**
      * Returns the size of dialog window in pixel.
      * <p>
-     * The window size returned as a point which conatins x and y coordinate values.
+     * The window size returned as a point which contains x and y coordinate
+     * values.
      * <strong>This method will be removed in future version to avoid fixed sized windows which
      * is not appropriate in multilingual applications.</strong>
      * @return  The size of dialog window in pixel.

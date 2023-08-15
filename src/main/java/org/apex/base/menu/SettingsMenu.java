@@ -20,10 +20,10 @@
  */
 package org.apex.base.menu;
 
+import java.awt.Point;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.settings.ui.ConfigurationPage;
-import java.awt.Point;
 
 /**
  * A target menu to display main screen of user preferences.
@@ -71,5 +71,10 @@ public class SettingsMenu extends SimplePanelDialogMenu {
 
     public String getTitle() {
         return "Preferences";
+    }
+
+    @Override
+    protected Point getLocation() {
+        return this.getTopCenterLocation();
     }
 }

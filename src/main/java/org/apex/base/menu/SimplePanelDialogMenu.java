@@ -20,11 +20,15 @@
  */
 package org.apex.base.menu;
 
+import java.awt.BorderLayout;
+import java.awt.Point;
+import java.awt.Window;
+import javax.swing.JPanel;
+import org.apex.base.component.ApexDialog;
+import org.apex.base.component.ApexFrame;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
-import org.apex.base.component.ApexDialog;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
+import org.apex.base.logging.Logger;
 
 /**
  * A base menu target to produce a dialog window which uses
@@ -54,16 +58,60 @@ public abstract class SimplePanelDialogMenu extends BasicDialogMenu {
      */
     public void createDialog(InputParams in, OutputParams out) {
         if (this.panel != null && !this.panel.isShowing()) {
-            dialog = new ApexDialog(getParentWindow(), getTitle());
+            Window window = getParentWindow();
+            if (window instanceof ApexFrame) {
+                dialog = new ApexDialog((ApexFrame) getParentWindow(), getTitle());
+            } else if (window instanceof ApexDialog) {
+                dialog = new ApexDialog((ApexDialog) getParentWindow(), getTitle());
+            } else {
+                Logger.logError("The parent window type is neither an ApexFrame nor an ApexDialog", null);
+                return;
+            }
             dialog.setModal(isModal());
             dialog.getContentPane().setLayout(new BorderLayout());
             dialog.getContentPane().add(panel);
 
             dialog.setSize((int) windowSize().getX(), (int) windowSize().getY());
             dialog.setResizable(false);
-            dialog.setLocationRelativeTo(getParentWindow());
+            if (getLocation() != null) {
+                dialog.setLocation(getLocation());
+            } else {
+                dialog.setLocationRelativeTo(getParentWindow());
+            }
             dialog.setIconImage(getIconImage());
         }
+    }
+
+    /**
+     * Returns the location where to display this dialog. By default it returns
+     * the top center location and subclasses may override this to change the
+     * behavior. When <code>null</code> is returned the dialog is shown at the
+     * center (vertically and horizontally) of the parent window.
+     *
+     * @return A location in the parent window.
+     */
+    protected Point getLocation() {
+        return this.getTopCenterLocation();
+    }
+
+    /**
+     * Returns the top right location of the parent window.
+     *
+     * @return A location in the parent window.
+     */
+    protected Point getTopRightLocation() {
+        Window frame = getParentWindow();
+        return new Point(frame.getX() + frame.getWidth() / 2, frame.getY() + 150);
+    }
+
+    /**
+     * Returns the top center location of the parent window.
+     *
+     * @return A location in the parent window.
+     */
+    protected Point getTopCenterLocation() {
+        Window frame = getParentWindow();
+        return new Point(frame.getX() + (frame.getWidth() - windowSize().x) / 2, frame.getY() + 150);
     }
 
     /**

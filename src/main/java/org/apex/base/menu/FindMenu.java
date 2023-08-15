@@ -20,11 +20,11 @@
  */
 package org.apex.base.menu;
 
+import java.awt.Point;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.search.SearchTextUtility;
 import org.apex.base.search.ui.FindPanel;
-import java.awt.Point;
 
 /**
  * Creates 'Find' dialog and provides facility to find text in a document.
@@ -40,7 +40,7 @@ public class FindMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(450, 180);
+    private static final Point WINDOW_SIZE = new Point(450, 170);
 
     /**
      * Creates a new instance of {@code FindMenu}.
@@ -75,5 +75,10 @@ public class FindMenu extends SimplePanelDialogMenu {
 
     public String getTitle() {
         return "Find";
+    }
+
+    @Override
+    protected Point getLocation() {
+        return this.getTopRightLocation();
     }
 }

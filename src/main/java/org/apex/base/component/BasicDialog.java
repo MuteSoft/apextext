@@ -20,15 +20,14 @@
  */
 package org.apex.base.component;
 
-import javax.swing.JFrame;
-import org.apex.base.core.EditorBase;
-import org.apex.base.data.EditorContext;
-import org.apex.base.util.ImageCreator;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Window;
 import javax.swing.JDialog;
 import org.apex.base.constant.EditorKeyConstants;
+import org.apex.base.core.EditorBase;
+import org.apex.base.data.EditorContext;
+import org.apex.base.util.ImageCreator;
 
 /**
  * An implmentation of {@code EditorDialog} and base class for creating
@@ -75,6 +74,7 @@ public abstract class BasicDialog implements EditorDialog {
      */
     public void makeDialogVisible() {
         if (this.dialog != null) {
+            this.dialog.toFront();
             this.dialog.setVisible(true);
         }
     }
@@ -97,7 +97,8 @@ public abstract class BasicDialog implements EditorDialog {
         return EditorBase.getContext();
     }
 
-    public JFrame getParentWindow() {
+    @Override
+    public Window getParentWindow() {
         return getContext().getEditorComponents().getFrame();
     }
 }

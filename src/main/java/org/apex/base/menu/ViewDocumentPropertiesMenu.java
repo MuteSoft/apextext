@@ -20,14 +20,14 @@
  */
 package org.apex.base.menu;
 
+import java.awt.Point;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import org.apex.base.component.DocumentTabComponent;
 import org.apex.base.data.AbstractDocument;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.ui.DocumentPropertiesView;
-import java.awt.Point;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 
 /**
  * A menu target to display properties of a document in a dialog window.
@@ -40,7 +40,7 @@ public class ViewDocumentPropertiesMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(350, 340);
+    private static final Point WINDOW_SIZE = new Point(350, 360);
 
     /**
      * Creates a new instance of {@code ViewDocumentPropertiesMenu}.

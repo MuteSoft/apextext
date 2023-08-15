@@ -20,6 +20,7 @@
  */
 package org.apex.base.component;
 
+import java.awt.Dialog;
 import java.awt.Frame;
 import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;
@@ -63,6 +64,34 @@ public class ApexDialog extends JDialog {
      * @param mTitle The {@code String} to display in the dialog's title bar.
      */
     public ApexDialog(Frame mOwner, String mTitle) {
+        this(mOwner, mTitle, false, null);
+    }
+
+    /**
+     * Creates a new instance of {@code ApexDialog} using specified title, owner
+     * {@code Dialog}, modality and {@code GraphicsConfiguration}.
+     *
+     * @param mOwner The {@code Dialog} from which the dialog is displayed.
+     * @param mTitle The {@code String} to display in the dialog's title bar.
+     * @param mModal Specifies whether dialog blocks user input to other
+     * top-level windows when shown. If {@code true}, the modality type property
+     * is set to {@code DEFAULT_MODALITY_TYPE}, otherwise the dialog is
+     * modeless.
+     * @param mGc the {@code GraphicsConfiguration} of the target screen device.
+     */
+    public ApexDialog(Dialog mOwner, String mTitle, boolean mModal,
+            GraphicsConfiguration mGc) {
+        super(mOwner, mTitle, mModal, mGc);
+    }
+
+    /**
+     * Creates a new instance of {@code ApexDialog} using specified title and
+     * owner {@code Dialog}. The dialog created is modeless.
+     *
+     * @param mOwner The {@code Dialog} from which the dialog is displayed.
+     * @param mTitle The {@code String} to display in the dialog's title bar.
+     */
+    public ApexDialog(Dialog mOwner, String mTitle) {
         this(mOwner, mTitle, false, null);
     }
 

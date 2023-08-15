@@ -20,11 +20,10 @@
  */
 package org.apex.base.settings.ui;
 
-import org.apex.base.component.SimplePanelDialog;
-import org.apex.base.settings.DocumentTypesConfiguration;
 import java.awt.Point;
 import javax.swing.JList;
 import org.apex.base.data.IDocumentType;
+import org.apex.base.settings.DocumentTypesConfiguration;
 
 /**
  * A dialog window to display the edit document extension form.
@@ -32,7 +31,7 @@ import org.apex.base.data.IDocumentType;
  * @version 1.1
  * @since Apex 1.0
  */
-public class EditDocumentExtensionDialog extends SimplePanelDialog {
+public class EditDocumentExtensionDialog extends SimplePanelSettingsDialog {
 
     /**
      * The dialog window size.

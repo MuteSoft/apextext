@@ -19,10 +19,10 @@
  */
 package org.apex.base.menu;
 
+import java.awt.Point;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.help.ui.AboutToolView;
-import java.awt.Point;
 
 /**
  * A menu target to display a brief description of editor.
@@ -35,7 +35,7 @@ public class AboutToolMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(425, 330);
+    private static final Point WINDOW_SIZE = new Point(425, 365);
 
     /**
      * Creates an instance of AboutToolMenu.

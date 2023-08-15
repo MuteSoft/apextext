@@ -20,22 +20,22 @@
  */
 package org.apex.base.search.ui;
 
-import org.apex.base.constant.MenuConstants;
-import org.apex.base.core.EditorBase;
-import org.apex.base.core.MenuManager;
-import org.apex.base.data.EditorContext;
-import org.apex.base.data.InputParams;
-import org.apex.base.data.OutputParams;
-import org.apex.base.search.SearchTextModel;
-import org.apex.base.ui.text.UIDialogModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
+import org.apex.base.constant.MenuConstants;
+import org.apex.base.core.EditorBase;
+import org.apex.base.core.MenuManager;
+import org.apex.base.data.EditorContext;
+import org.apex.base.data.InputParams;
+import org.apex.base.data.OutputParams;
 import org.apex.base.event.FolderBrowserEventHandler;
 import org.apex.base.event.FolderSearchEventHandler;
+import org.apex.base.search.SearchTextModel;
+import org.apex.base.ui.text.UIDialogModel;
 import org.apex.base.util.DocumentData;
 
 /**
@@ -119,6 +119,7 @@ public class FolderSearchView extends javax.swing.JPanel implements UIDialogMode
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         searchKey = new javax.swing.JComboBox();
         caseSensitive = new javax.swing.JCheckBox();
@@ -135,8 +136,10 @@ public class FolderSearchView extends javax.swing.JPanel implements UIDialogMode
         fileFilter = new javax.swing.JComboBox();
         folderFilter = new javax.swing.JComboBox();
         includeSubfolders = new javax.swing.JCheckBox();
-        matchingLines = new javax.swing.JRadioButton();
-        matchingFiles = new javax.swing.JRadioButton();
+        allMatchingLines = new javax.swing.JCheckBox();
+        allMatchingFiles = new javax.swing.JCheckBox();
+
+        jCheckBox1.setText("jCheckBox1");
 
         jLabel1.setText("Find What:");
 
@@ -230,9 +233,14 @@ public class FolderSearchView extends javax.swing.JPanel implements UIDialogMode
             }
         });
 
-        matchingLines.setText("All Matching Lines");
+        allMatchingLines.setText("All Matching Lines");
+        allMatchingLines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allMatchingLinesActionPerformed(evt);
+            }
+        });
 
-        matchingFiles.setText("All Matching Files");
+        allMatchingFiles.setText("All Matching Files");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -245,33 +253,31 @@ public class FolderSearchView extends javax.swing.JPanel implements UIDialogMode
                     .addComponent(jLabel3)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(matchingLines, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(matchingFiles))
+                    .addComponent(allMatchingLines)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(searchKey, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(folder, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fileFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(folderFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(caseSensitive)
-                                    .addComponent(wholeWord))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(highlightSearch)
-                                    .addComponent(includeSubfolders))))
+                            .addComponent(folderFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(help)
-                            .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                            .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)
                             .addComponent(folderBrowse, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(find, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addComponent(find, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(caseSensitive)
+                            .addComponent(wholeWord))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(highlightSearch)
+                            .addComponent(includeSubfolders)
+                            .addComponent(allMatchingFiles))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {close, find, folderBrowse, help});
@@ -311,11 +317,11 @@ public class FolderSearchView extends javax.swing.JPanel implements UIDialogMode
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wholeWord)
                     .addComponent(highlightSearch))
-                .addGap(11, 11, 11)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(matchingLines)
-                    .addComponent(matchingFiles))
-                .addContainerGap())
+                    .addComponent(allMatchingLines)
+                    .addComponent(allMatchingFiles))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void searchKeyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchKeyItemStateChanged
@@ -356,7 +362,14 @@ public class FolderSearchView extends javax.swing.JPanel implements UIDialogMode
     private void includeSubfoldersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_includeSubfoldersItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_includeSubfoldersItemStateChanged
+
+    private void allMatchingLinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allMatchingLinesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allMatchingLinesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox allMatchingFiles;
+    private javax.swing.JCheckBox allMatchingLines;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox caseSensitive;
     private javax.swing.JButton close;
@@ -368,12 +381,11 @@ public class FolderSearchView extends javax.swing.JPanel implements UIDialogMode
     private javax.swing.JButton help;
     private javax.swing.JCheckBox highlightSearch;
     private javax.swing.JCheckBox includeSubfolders;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton matchingFiles;
-    private javax.swing.JRadioButton matchingLines;
     private javax.swing.JComboBox searchKey;
     private javax.swing.JCheckBox wholeWord;
     // End of variables declaration//GEN-END:variables

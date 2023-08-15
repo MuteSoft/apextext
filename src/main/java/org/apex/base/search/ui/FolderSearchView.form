@@ -4,6 +4,11 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jCheckBox1"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -28,30 +33,15 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="matchingLines" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="119" pref="119" max="119" attributes="0"/>
-                      <Component id="matchingFiles" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="allMatchingLines" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="searchKey" alignment="0" min="-2" pref="247" max="-2" attributes="1"/>
                           <Component id="folder" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                           <Component id="fileFilter" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                           <Component id="folderFilter" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="caseSensitive" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="wholeWord" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="highlightSearch" min="-2" max="-2" attributes="0"/>
-                                  <Component id="includeSubfolders" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -61,8 +51,20 @@
                           <Component id="find" linkSize="1" alignment="1" pref="67" max="32767" attributes="1"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="caseSensitive" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="wholeWord" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="highlightSearch" min="-2" max="-2" attributes="0"/>
+                          <Component id="includeSubfolders" min="-2" max="-2" attributes="0"/>
+                          <Component id="allMatchingFiles" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,12 +112,12 @@
                   <Component id="wholeWord" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="highlightSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="matchingLines" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="matchingFiles" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="allMatchingLines" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="allMatchingFiles" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -273,12 +275,15 @@
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="includeSubfoldersItemStateChanged"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="matchingLines">
+    <Component class="javax.swing.JCheckBox" name="allMatchingLines">
       <Properties>
         <Property name="text" type="java.lang.String" value="All Matching Lines"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allMatchingLinesActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="matchingFiles">
+    <Component class="javax.swing.JCheckBox" name="allMatchingFiles">
       <Properties>
         <Property name="text" type="java.lang.String" value="All Matching Files"/>
       </Properties>

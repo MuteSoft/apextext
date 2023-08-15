@@ -20,20 +20,22 @@
  */
 package org.apex.base.event;
 
-import org.apex.base.constant.MenuConstants;
-import org.apex.base.core.EditorBase;
-import org.apex.base.core.ActionManager;
-import org.apex.base.data.AbstractDocument;
-import org.apex.base.data.EditorContext;
-import org.apex.base.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;
 import javax.swing.text.Caret;
 import javax.swing.text.Element;
+import org.apex.base.constant.MenuConstants;
+import org.apex.base.core.ActionManager;
+import org.apex.base.core.EditorBase;
+import org.apex.base.data.AbstractDocument;
+import org.apex.base.data.EditorContext;
+import org.apex.base.logging.Logger;
 
 /**
  * A caret listener to update the editor status bar (caret position info) and cut, copy menus
- * enable status when caret moves in editor programmatically or moved by user.
+ * enable status when caret moves in editor programmatically or
+ * moved by user.
+ *
  * @author Mrityunjoy Saha
  * @version 1.0
  * @since Apex 1.0

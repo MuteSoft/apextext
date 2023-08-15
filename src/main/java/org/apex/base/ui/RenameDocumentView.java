@@ -20,6 +20,9 @@
  */
 package org.apex.base.ui;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JDialog;
+import javax.swing.text.AbstractDocument;
 import org.apex.base.common.CommonMessageManager;
 import org.apex.base.common.FlowStopException;
 import org.apex.base.core.EditorBase;
@@ -29,9 +32,6 @@ import org.apex.base.event.RenameDocumentEventHandler;
 import org.apex.base.ui.text.RenameDocumentModel;
 import org.apex.base.ui.text.UIDialogModel;
 import org.apex.base.util.StringUtil;
-import java.awt.event.KeyEvent;
-import javax.swing.JDialog;
-import javax.swing.text.AbstractDocument;
 
 /**
  * A rename document form where user can specify target document name.
@@ -130,14 +130,12 @@ public class RenameDocumentView extends javax.swing.JPanel implements
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(renameTo, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancel, ok});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

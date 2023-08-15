@@ -20,21 +20,20 @@
  */
 package org.apex.base.menu;
 
-import javax.swing.JFrame;
-import org.apex.base.component.EditorDialog;
-import org.apex.base.data.InputParams;
-import org.apex.base.data.OutputParams;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Window;
 import javax.swing.JDialog;
+import org.apex.base.component.EditorDialog;
+import org.apex.base.data.InputParams;
+import org.apex.base.data.OutputParams;
 
 /**
  * An executable target of editor menu which displays a dialog window.
  * <p>
  * The dialog is displayed to prompt for user input. Once dialog disappears from screen
- * (on close or cancel) menu target executuion ends. On dialog window subsequent events are handled by
- * other event handlers.
+ * (on close or cancel) menu target execution ends. On dialog window
+ * subsequent events are handled by * other event handlers.
  * @author Mrityunjoy Saha
  * @version 1.0
  * @since Apex 1.0
@@ -62,6 +61,7 @@ public abstract class BasicDialogMenu extends MenuTarget implements EditorDialog
      * @param input Input parameters.
      * @param output Output parameters.
      */
+    @Override
     public final void createUI(InputParams input,
             OutputParams output) {
         createDialog(input, output);
@@ -71,6 +71,7 @@ public abstract class BasicDialogMenu extends MenuTarget implements EditorDialog
      * Returns the location on screen of displayed dialog window.
      * @return The location on screen of displayed dialog window.
      */
+    @Override
     public Point windowLocation() {
         return null;
     }
@@ -79,6 +80,7 @@ public abstract class BasicDialogMenu extends MenuTarget implements EditorDialog
      * Returns the size of displayed dialog window size.
      * @return The size of displayed dialog window size.
      */
+    @Override
     public Point windowSize() {
         return DEFAULT_WINDOW_SIZE;
     }
@@ -87,6 +89,7 @@ public abstract class BasicDialogMenu extends MenuTarget implements EditorDialog
      * Returns the displayed dialog window.
      * @return The displayed dialog window.
      */
+    @Override
     public Window getDialogWindow() {
         return this.dialog;
     }
@@ -97,6 +100,7 @@ public abstract class BasicDialogMenu extends MenuTarget implements EditorDialog
      * Subclasses should override this method and return appropriate value.
      * @return {@code true} if underlying dialog window is modal; otherwise returns {@code false}.
      */
+    @Override
     public boolean isModal() {
         return true;
     }
@@ -109,7 +113,8 @@ public abstract class BasicDialogMenu extends MenuTarget implements EditorDialog
         return getContext().getEditorProperties().getEditorIcon();
     }
 
-    public JFrame getParentWindow() {
+    @Override
+    public Window getParentWindow() {
         return getContext().getEditorComponents().getFrame();
     }
 }

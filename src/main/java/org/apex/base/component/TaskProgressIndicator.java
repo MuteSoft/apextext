@@ -20,11 +20,10 @@
 package org.apex.base.component;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import org.apex.base.core.EditorBase;
+import org.apex.base.logging.Logger;
 import org.apex.base.ui.StatusBar;
 
 /**
@@ -40,6 +39,7 @@ public class TaskProgressIndicator {
     private static final TaskProgressIndicator taskProgressIndicator = new TaskProgressIndicator();
     private boolean inProgress;
     private boolean paused;
+
     private static JProgressBar progressBar;
 
     /**
@@ -80,7 +80,7 @@ public class TaskProgressIndicator {
         try {
             Thread.sleep(10);
         } catch (InterruptedException ex) {
-            ex.printStackTrace();
+            Logger.logWarning("Unable to finish the task indicator", ex);
         }
         reset();
     }
@@ -108,16 +108,11 @@ public class TaskProgressIndicator {
             progressBar.setValue(progress);
         } else {
             try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-
-                    public void run() {
-                        progressBar.setValue(progress);
-                    }
+                SwingUtilities.invokeAndWait(() -> {
+                    progressBar.setValue(progress);
                 });
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            } catch (InvocationTargetException ex) {
-                ex.printStackTrace();
+            } catch (InterruptedException | InvocationTargetException ex) {
+                Logger.logWarning("Unable to update progress", ex);
             }
         }
     }

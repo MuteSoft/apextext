@@ -20,14 +20,16 @@
  */
 package org.apex.base.menu;
 
+import java.awt.Point;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.search.ui.GoToLinePanel;
 import org.apex.base.ui.text.GoToLineModel;
-import java.awt.Point;
 
 /**
- * Creates 'Go To Line' dialog and provides facility to navigate to any line in the document.
+ * Creates "Go To Line" dialog and provides facility to navigate to any line in
+ * the document.
+ *
  * @author Mrityunjoy Saha
  * @version 1.0
  * @since Apex 1.0
@@ -41,7 +43,7 @@ public class GoToLineMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(170, 110);
+    private static final Point WINDOW_SIZE = new Point(180, 110);
 
     /**
      * Creates a new instance of GoToLineMenu.
@@ -71,5 +73,10 @@ public class GoToLineMenu extends SimplePanelDialogMenu {
 
     public String getTitle() {
         return "Go To Line";
+    }
+
+    @Override
+    protected Point getLocation() {
+        return this.getTopRightLocation();
     }
 }

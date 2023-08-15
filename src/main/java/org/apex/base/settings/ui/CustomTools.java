@@ -20,21 +20,21 @@
  */
 package org.apex.base.settings.ui;
 
+import java.util.Vector;
 import org.apex.base.component.EditorDialog;
 import org.apex.base.constant.CommonConstants;
 import org.apex.base.data.CustomTool;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.settings.CustomToolConfiguration;
-import org.apex.base.settings.ui.AddCustomToolDialog;
-import org.apex.base.settings.ui.EditCustomToolDialog;
 import org.apex.base.settings.ui.text.UIConfigurationDataModel;
 import org.apex.base.settings.ui.text.UIConfigurationUtility;
-import java.util.Vector;
 
 /**
  * The custom tools maintenance page. Using this configuration page
- * custom tools can be added or modifed or removed.
+ * custom tools
+ * can be added or modified or removed.
+ *
  * @author Mrityunjoy Saha
  * @version 1.0
  * @since Apex 1.0

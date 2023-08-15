@@ -22,7 +22,6 @@ package org.apex.base.settings.ui;
 
 import java.awt.Point;
 import javax.swing.JList;
-import org.apex.base.component.SimplePanelDialog;
 import org.apex.base.data.IDocumentType;
 import org.apex.base.settings.DocumentTypesConfiguration;
 
@@ -32,7 +31,7 @@ import org.apex.base.settings.DocumentTypesConfiguration;
  * @version 1.1
  * @since Apex 1.2
  */
-public class EditDocumentTypeDialog extends SimplePanelDialog {
+public class EditDocumentTypeDialog extends SimplePanelSettingsDialog {
 
     /**
      * The dialog window size.

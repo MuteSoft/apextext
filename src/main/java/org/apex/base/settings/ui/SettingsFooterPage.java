@@ -20,13 +20,13 @@
  */
 package org.apex.base.settings.ui;
 
+import java.io.File;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import org.apex.base.settings.ConfigurationManager;
 import org.apex.base.settings.EditorConfiguration;
 import org.apex.base.settings.SettingsMessageManager;
 import org.apex.base.util.EditorUtil;
-import java.io.File;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 /** 
  * The footer of configuration page.
@@ -141,9 +141,9 @@ public class SettingsFooterPage extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(restore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
-                        .addComponent(applySettings)
+                        .addComponent(cancelSettings)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelSettings)))
+                        .addComponent(applySettings)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

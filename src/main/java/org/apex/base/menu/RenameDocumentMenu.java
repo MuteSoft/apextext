@@ -19,15 +19,16 @@
  */
 package org.apex.base.menu;
 
+import java.awt.Point;
+import org.apex.base.data.AbstractDocument;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.ui.RenameDocumentView;
 import org.apex.base.ui.text.RenameDocumentModel;
-import java.awt.Point;
-import org.apex.base.data.AbstractDocument;
 
 /**
- * Creates 'Rename Document' dialog and provides facility to rename a document.
+ * Creates 'Rename document dialog and provides facility to rename a document.
+ *
  * @author Mrityunjoy Saha
  * @version 1.0
  * @since Apex 1.0
@@ -45,7 +46,7 @@ public class RenameDocumentMenu extends SimplePanelDialogMenu {
 
     /**
      * Creates a new instance of {@code RenameDocumentMenu}. Creates the user interface
-     * for 'Rename Document' dialog.
+     * for 'Rename document dialog.
      */
     public RenameDocumentMenu() {
         panel = new RenameDocumentView(renameDocModel);

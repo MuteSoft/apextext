@@ -22,7 +22,6 @@ package org.apex.base.settings.ui;
 
 import java.awt.Point;
 import javax.swing.JList;
-import org.apex.base.component.SimplePanelDialog;
 import org.apex.base.settings.DocumentTypesConfiguration;
 
 /**
@@ -31,12 +30,12 @@ import org.apex.base.settings.DocumentTypesConfiguration;
  * @version 1.1
  * @since Apex 1.2
  */
-public class AddDocumentTypeDialog extends SimplePanelDialog {
+public class AddDocumentTypeDialog extends SimplePanelSettingsDialog {
 
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(400, 340);
+    private static final Point WINDOW_SIZE = new Point(470, 370);
 
     /**
      * Creates a new instance of {@code AddDocumentTypeDialog}.

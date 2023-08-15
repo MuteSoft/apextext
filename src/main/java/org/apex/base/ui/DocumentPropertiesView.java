@@ -22,11 +22,6 @@ package org.apex.base.ui;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
-import org.apex.base.core.EditorBase;
-import org.apex.base.data.AbstractDocument;
-import org.apex.base.data.EditorContext;
-import org.apex.base.data.SegmentCache;
-import org.apex.base.ui.text.UIDialogModel;
 import java.text.BreakIterator;
 import java.util.Date;
 import javax.swing.JDialog;
@@ -35,6 +30,11 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.Segment;
 import org.apex.base.component.SelectableLabel;
+import org.apex.base.core.EditorBase;
+import org.apex.base.data.AbstractDocument;
+import org.apex.base.data.EditorContext;
+import org.apex.base.data.SegmentCache;
+import org.apex.base.ui.text.UIDialogModel;
 
 /**
  * A panel to display basic properties of a document.
@@ -183,9 +183,9 @@ public class DocumentPropertiesView extends javax.swing.JPanel implements
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
-                        .addGap(56, 56, 56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(location)
                             .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -243,7 +243,7 @@ public class DocumentPropertiesView extends javax.swing.JPanel implements
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(readOnly)
                     .addComponent(temporary))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ok)
                     .addComponent(clipboardCopy))

@@ -20,11 +20,10 @@
  */
 package org.apex.base.settings.ui;
 
-import org.apex.base.component.SimplePanelDialog;
-import org.apex.base.data.CustomTool;
-import org.apex.base.settings.CustomToolConfiguration;
 import java.awt.Point;
 import javax.swing.JList;
+import org.apex.base.data.CustomTool;
+import org.apex.base.settings.CustomToolConfiguration;
 
 /**
  * A dialog window to display the edit custom tool form.
@@ -32,7 +31,7 @@ import javax.swing.JList;
  * @version 1.0
  * @since Apex 1.0
  */
-public class EditCustomToolDialog extends SimplePanelDialog {
+public class EditCustomToolDialog extends SimplePanelSettingsDialog {
 
     /**
      * The dialog window size.

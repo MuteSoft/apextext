@@ -20,6 +20,9 @@
  */
 package org.apex.base.search.ui;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JDialog;
+import javax.swing.text.AbstractDocument;
 import org.apex.base.core.EditorBase;
 import org.apex.base.data.EditorContext;
 import org.apex.base.data.NumericFilter;
@@ -27,9 +30,6 @@ import org.apex.base.event.GoToLineEventHandler;
 import org.apex.base.logging.Logger;
 import org.apex.base.ui.text.GoToLineModel;
 import org.apex.base.ui.text.UIDialogModel;
-import java.awt.event.KeyEvent;
-import javax.swing.JDialog;
-import javax.swing.text.AbstractDocument;
 
 /**
  * A form where user can enter a line number to navigate to a line. It makes the target line
@@ -95,14 +95,14 @@ public class GoToLinePanel extends javax.swing.JPanel implements UIDialogModel {
         ((AbstractDocument)this.number.getDocument()).setDocumentFilter(new NumericFilter(6));
         jLabel1 = new javax.swing.JLabel();
 
-        goToB.setText("Go To");
+        goToB.setText("Go"); // NOI18N
         goToB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goToHandler(evt);
             }
         });
 
-        cancelB.setText("Cancel");
+        cancelB.setText("Cancel"); // NOI18N
         cancelB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelHandler(evt);
@@ -115,7 +115,7 @@ public class GoToLinePanel extends javax.swing.JPanel implements UIDialogModel {
             }
         });
 
-        jLabel1.setText("Line:");
+        jLabel1.setText("Line:"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -125,14 +125,13 @@ public class GoToLinePanel extends javax.swing.JPanel implements UIDialogModel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(goToB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(number, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(number))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cancelB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(goToB)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

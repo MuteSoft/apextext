@@ -323,6 +323,13 @@ public abstract class EditorProperties {
     public abstract String getEditorSupportUrl();
 
     /**
+     * Returns the URL of the source code repository.
+     *
+     * @return The source code repository URL of the editor.
+     */
+    public abstract String getEditorSourceRepoUrl();
+
+    /**
      * Returns the base class.
      * @return The editor base class.
      */

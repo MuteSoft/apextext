@@ -20,10 +20,9 @@
  */
 package org.apex.base.settings.ui;
 
-import org.apex.base.component.SimplePanelDialog;
-import org.apex.base.settings.CodeTemplatesConfiguration;
 import java.awt.Point;
 import javax.swing.JTable;
+import org.apex.base.settings.CodeTemplatesConfiguration;
 
 /**
  * A dialog window to display the add code template form.
@@ -31,7 +30,7 @@ import javax.swing.JTable;
  * @version 1.1
  * @since Apex 1.0
  */
-public class AddCodeTemplateDialog extends SimplePanelDialog {
+public class AddCodeTemplateDialog extends SimplePanelSettingsDialog {
 
     /**
      * The dialog window size.

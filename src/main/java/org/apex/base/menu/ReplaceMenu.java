@@ -20,11 +20,11 @@
  */
 package org.apex.base.menu;
 
+import java.awt.Point;
 import org.apex.base.data.InputParams;
 import org.apex.base.data.OutputParams;
 import org.apex.base.search.SearchTextUtility;
 import org.apex.base.search.ui.ReplacePanel;
-import java.awt.Point;
 
 /**
  * Creates 'Replace' dialog and provides facility to replace text in a document.
@@ -37,7 +37,7 @@ public class ReplaceMenu extends SimplePanelDialogMenu {
     /**
      * The dialog window size.
      */
-    private static final Point WINDOW_SIZE = new Point(540, 220);
+    private static final Point WINDOW_SIZE = new Point(540, 210);
 
     /**
      * Creates a new instance of {@code ReplaceMenu}. Creates the user interface
@@ -73,5 +73,10 @@ public class ReplaceMenu extends SimplePanelDialogMenu {
     @Override
     public boolean isModal() {
         return false;
+    }
+
+    @Override
+    protected Point getLocation() {
+        return this.getTopRightLocation();
     }
 }
